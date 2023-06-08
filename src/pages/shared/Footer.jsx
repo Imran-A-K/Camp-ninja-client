@@ -332,7 +332,7 @@ const Footer = () => {
                   </svg>
 
                   <address className="-mt-0.5 flex-1 not-italic text-gray-700">
-                    213 Lane, Chattogram, Bangladesh
+                    31 Avenue, Chattogram, Bangladesh
                   </address>
                 </li>
               </ul>
