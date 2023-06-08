@@ -1,20 +1,20 @@
-
+import loginImg from '../../assets/Login/enter-login-password-registration-page-screen-sign-your-account-creative-metaphor_566886-2871.jpg'
 const Login = () => {
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
     <div
-      className="max-w-screen-xl m-0 sm:m-20 bg-white shadow sm:rounded-lg flex justify-center flex-1"
+      className="max-w-screen-xl m-0 sm:m-20 bg-white shadow sm:rounded-lg flex flex-row-reverse justify-center flex-1"
     >
       <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
-        <div>
+        {/* <div>
           <img
             src="https://storage.googleapis.com/devitary-image-host.appspot.com/15846435184459982716-LogoMakr_7POjrN.png"
             className="w-32 mx-auto"
           />
-        </div>
+        </div> */}
         <div className="mt-12 flex flex-col items-center">
-          <h1 className="text-2xl xl:text-3xl font-extrabold">
-            Sign up for templatana
+          <h1 className="text-2xl xl:text-3xl font-bold">
+            Sign in for Camp <span className='text-violet-600'>Ninja</span>
           </h1>
           <div className="w-full flex-1 mt-8">
             <div className="flex flex-col items-center">
@@ -46,21 +46,7 @@ const Login = () => {
                 </span>
               </button>
 
-              <button
-                className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline mt-5"
-              >
-                <div className="bg-white p-1 rounded-full">
-                  <svg className="w-6" viewBox="0 0 32 32">
-                    <path
-                      fillRule="evenodd"
-                      d="M16 4C9.371 4 4 9.371 4 16c0 5.3 3.438 9.8 8.207 11.387.602.11.82-.258.82-.578 0-.286-.011-1.04-.015-2.04-3.34.723-4.043-1.609-4.043-1.609-.547-1.387-1.332-1.758-1.332-1.758-1.09-.742.082-.726.082-.726 1.203.086 1.836 1.234 1.836 1.234 1.07 1.836 2.808 1.305 3.492 1 .11-.777.422-1.305.762-1.605-2.664-.301-5.465-1.332-5.465-5.93 0-1.313.469-2.383 1.234-3.223-.121-.3-.535-1.523.117-3.175 0 0 1.008-.32 3.301 1.23A11.487 11.487 0 0116 9.805c1.02.004 2.047.136 3.004.402 2.293-1.55 3.297-1.23 3.297-1.23.656 1.652.246 2.875.12 3.175.77.84 1.231 1.91 1.231 3.223 0 4.61-2.804 5.621-5.476 5.922.43.367.812 1.101.812 2.219 0 1.605-.011 2.898-.011 3.293 0 .32.214.695.824.578C24.566 25.797 28 21.3 28 16c0-6.629-5.371-12-12-12z"
-                    />
-                  </svg>
-                </div>
-                <span className="ml-4">
-                  Sign Up with GitHub
-                </span>
-              </button>
+              
             </div>
 
             <div className="my-12 border-b text-center">
@@ -83,7 +69,7 @@ const Login = () => {
                 placeholder="Password"
               />
               <button
-                className="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                className="mt-5 tracking-wide font-semibold bg-violet-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
               >
                 <svg
                   className="w-6 h-6 -ml-2"
@@ -115,30 +101,14 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <div className="flex-1 bg-indigo-100 text-center hidden lg:flex">
+      <div className="flex-1 bg-violet-100 text-center hidden lg:flex">
         <div
           className="m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat"
-          style="background-image: url('https://storage.googleapis.com/devitary-image-host.appspot.com/15848031292911696601-undraw_designer_life_w96d.svg');"
-        ></div>
+          style={{ backgroundImage: `url(${loginImg})` }}
+          ></div>
       </div>
     </div>
-    <div className="REMOVE-THIS-ELEMENT-IF-YOU-ARE-USING-THIS-PAGE hidden treact-popup fixed inset-0 flex items-center justify-center" style="background-color: rgba(0,0,0,0.3);">
-        <div className="max-w-lg p-8 sm:pb-4 bg-white rounded shadow-lg text-center sm:text-left">
-          
-          <h3 className="text-xl sm:text-2xl font-semibold mb-6 flex flex-col sm:flex-row items-center">
-            <div className="bg-green-200 p-2 rounded-full flex items-center mb-4 sm:mb-0 sm:mr-2">
-              <svg className="text-green-800 inline-block w-5 h-5" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path></svg>
-              </div>
-            Free TailwindCSS Component Kit!
-          </h3>  
-          <p>I recently released Treact, a <span className="font-bold">free</span> TailwindCSS Component Kit built with React.</p>
-          <p className="mt-2">It has 52 different UI components, 7 landing pages, and 8 inner pages prebuilt. And they are customizable!</p>
-          <div className="mt-8 pt-8 sm:pt-4 border-t -mx-8 px-8 flex flex-col sm:flex-row justify-end leading-relaxed">
-            <button className="close-treact-popup px-8 py-3 sm:py-2 rounded border border-gray-400 hover:bg-gray-200 transition duration-300">Close</button>
-            <a className="font-bold mt-4 sm:mt-0 sm:ml-4 px-8 py-3 sm:py-2 rounded bg-purple-700 text-gray-100 hover:bg-purple-900 transition duration-300 text-center" href="https://treact.owaiskhan.me">See Treact</a>
-          </div>
-        </div>
-      </div>
+    
   </div>
   )
 }
