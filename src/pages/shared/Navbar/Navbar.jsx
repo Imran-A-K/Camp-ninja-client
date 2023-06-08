@@ -22,7 +22,7 @@ const signOutHandler = () => {
   //   });
 };
   return (
-    <div className='max-w-[1300px] bg-[#f1f4f7] mx-auto drop-shadow-md py-2 flex justify-between items-center px-4'>
+    <div className=' bg-[#f1f4f7] mx-auto drop-shadow-md py-2 flex justify-between items-center px-4'>
       {/* Left side */}
       <div className='flex gap-2 items-center'>
         <div onClick={()=> setNav(!nav)} className='cursor-pointer hidden max-sm:block'>
@@ -43,7 +43,7 @@ const signOutHandler = () => {
       <ul className="hidden md:flex gap-7">
           <li>
             <NavLink
-              className={({ isActive }) => (isActive ? "activeTab" : "default")}
+              className={({ isActive }) => (isActive ? "actiVatedTab" : "defaultTab")}
               // to="/"
             >
               Home
@@ -52,7 +52,7 @@ const signOutHandler = () => {
          {
           user &&  <li>
           <NavLink
-            className={({ isActive }) => (isActive ? "activeTab" : "default")}
+            className={({ isActive }) => (isActive ? "actiVatedTab" : "defaultTab")}
             // to="myToys"
           >
             Instructors
@@ -61,7 +61,7 @@ const signOutHandler = () => {
          }
           <li>
             <NavLink
-              className={({ isActive }) => (isActive ? "activeTab" : "default")}
+              className={({ isActive }) => (isActive ? "actiVatedTab" : "defaultTab")}
               // to="allToys"
             >
               Classes
@@ -70,7 +70,7 @@ const signOutHandler = () => {
          {
           user &&  <li>
           <NavLink
-            className={({ isActive }) => (isActive ? "activeTab" : "default")}
+            className={({ isActive }) => (isActive ? "actiVatedTab" : "defaultTab")}
             // to="addAToy"
           >
             Dashboard

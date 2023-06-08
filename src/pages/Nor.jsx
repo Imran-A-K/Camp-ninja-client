@@ -1,8 +1,16 @@
-import React from 'react'
-
+const firstDiv= ()  =>{
+  console.log("first div is logged")
+}
+const secondDiv = () => {
+  console.log("second div is logged")
+}
 const Nor = () => {
   return (
-    <div>Nor</div>
+    <div className='cursor-pointer ' onClick={firstDiv}>
+      <div onClick={secondDiv}>
+cdkc
+      </div>
+    </div>
   )
 }
 

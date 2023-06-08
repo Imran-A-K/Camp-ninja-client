@@ -4,11 +4,11 @@
 @tailwind components;
 @tailwind utilities; 
 
-.activeTab{
+.actiVatedTab{
   @apply font-semibold tracking-wide text-blue-500 transition-colors text-2xl duration-200 hover:text-teal-700
 }
 
-.default{
+.defaultTab{
   @apply font-medium tracking-wide text-gray-700 transition-colors duration-200 text-2xl hover:text-teal-700
 }
 .navbar-btn{
