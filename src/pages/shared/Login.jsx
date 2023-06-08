@@ -3,13 +3,20 @@ import loginImg from '../../assets/Login/enter-login-password-registration-page-
 import { useState } from 'react'
 import {AiFillEyeInvisible, AiFillEye} from 'react-icons/ai'
 import { useForm } from "react-hook-form";
+import { BiError } from 'react-icons/bi';
 
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
-  const { register, handleSubmit } = useForm();
-  const onSubmit = data => console.log(data);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    criteriaMode: "all",
+  });  const onSubmit = data => console.log(data);
     
+  
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
     <div
@@ -68,14 +75,34 @@ const Login = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="mx-auto max-w-xs">
               <input
                 className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                type="email"
+                type="text"
                 placeholder="Email"
+                {...register("email", {
+                  required: "Email is required.",
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: "Invalid email address."
+                  }
+                })}
+                aria-invalid={errors.email ? "true" : "false"}
               />
+              {errors?.email && (
+                  <p
+                    className="pl-1 pt-2 flex items-center gap-2 text-base text-red-500"
+                    role="alert"
+                  >
+                    <BiError /> {errors.email.message}
+                  </p>
+                )}
               <div className='relative'>
               <input
                 className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                 type={(showPassword === false)? 'password' :'text'}
                 placeholder="Password"
+                {...register("password", {
+                  required: "Please Enter your password.",
+                })}
+                aria-invalid={errors.password ? "true" : "false"}
               />
               <div className='cursor-pointer text-2xl absolute right-3 top-9 z-10'>
                       {
@@ -86,8 +113,16 @@ const Login = () => {
                       
                       
                   </div>
+                  {errors?.password && (
+                  <p
+                    className="pl-1 pt-2 flex items-center gap-2 text-base text-red-500"
+                    role="alert"
+                  >
+                    <BiError /> {errors.password.message}
+                  </p>
+                )}
               </div>
-              <button
+              <button 
                 className="mt-5 tracking-wide font-semibold bg-violet-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 active:scale-[.98] ease-in-out transform active:duration-100 transition-all hover:scale-[1.01] flex items-center justify-center focus:shadow-outline focus:outline-none"
               >
                 <svg

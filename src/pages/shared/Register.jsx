@@ -4,14 +4,12 @@ import { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { useForm } from "react-hook-form";
 import { BiError } from "react-icons/bi";
-import { ErrorMessage } from "@hookform/error-message";
 
 const Register = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-    getValues,
     watch
   } = useForm({
     criteriaMode: "all",
@@ -82,23 +80,29 @@ const Register = () => {
                     className="pl-1 pt-2 flex items-center gap-2 text-base text-red-500"
                     role="alert"
                   >
-                    <BiError /> Name is required
+                    <BiError /> Please Enter your Name
                   </p>
                 )}
                 <input
                   className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                  type="email"
+                  type="text"
                   name="email"
                   placeholder="Email"
-                  {...register("email", { required: true })}
+                  {...register("email", {
+                    required: "Email is required.",
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: "Invalid email address."
+                    }
+                  })}
                   aria-invalid={errors.email ? "true" : "false"}
                 />
-                {errors.email?.type === "required" && (
+                {errors?.email && (
                   <p
                     className="pl-1 pt-2 flex items-center gap-2 text-base text-red-500"
                     role="alert"
                   >
-                    <BiError /> Email is required
+                    <BiError /> {errors.email.message}
                   </p>
                 )}
 
@@ -110,21 +114,21 @@ const Register = () => {
                     placeholder="Password"
                     {...register("password", {
                       required: "Password is required.",
-                      // pattern: {
-                      //   value: /^(?=.*[A-Z]).*$/,
-                      //   message: "Password must have a capital letter."
-                      // },
-                      // validate: (value) => {
-                      //   const hasSpecialCharacter = /^(?=.*[!@#$%^&*()_\-+=|\\[\]{};:'",.<>\/?]).*$/.test(
-                      //     value
-                      //   );
-                      //   return (
-                      //     hasSpecialCharacter || {
-                      //       value: false,
-                      //       message: "Password must have a special character."
-                      //     }
-                      //   );
-                      // },
+                    //   pattern: {
+                    //     value: /^(?=.*[A-Z]).*$/,
+                    //     message: "Password must have a capital letter."
+                    //   },
+                    //   validate: (value) => {
+                    //     const hasSpecialCharacter = /^(?=.*[!@#$%^&*()_\-+=|\\[\]{};:'",.<>\/?]).*$/.test(
+                    //       value
+                    //     );
+                    //     return (
+                    //       hasSpecialCharacter || {
+                    //         value: false,
+                    //         message: "Password must have a special character."
+                    //       }
+                    //     );
+                    //   },
                       validate: (value) => {
                         const hasSpecialCharacter =
                           /^(?=.*[!@#$%^&*()_\-+=|\\[\]{};:'",.<>\/?]).*$/.test(
