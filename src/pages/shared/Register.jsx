@@ -65,7 +65,7 @@ const Register = () => {
               </div>
             </div>
 
-            <div className="mx-auto max-w-xs">
+            <form className="mx-auto max-w-xs">
               <input
                 className="w-full px-8 py-4 mb-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                 type="text"
@@ -112,6 +112,7 @@ const Register = () => {
               <input
                 className="w-full mt-4 px-8 py-4 mb-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                 type="url"
+                
                 placeholder="Enter your Photo URL"
               />
               <button
@@ -136,12 +137,12 @@ const Register = () => {
               <p className="mt-6 text-base text-gray-600 text-center font-semibold">
                 Already have an account?
               { " "}
-                <Link className=" text-violet-600 font-bold">
+                <Link to="/login" className=" text-violet-600 font-bold">
                 Login
                 </Link>
                 
               </p>
-            </div>
+            </form>
           </div>
         </div>
       </div>
