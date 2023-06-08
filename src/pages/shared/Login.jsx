@@ -1,5 +1,12 @@
+import { Link } from 'react-router-dom'
 import loginImg from '../../assets/Login/enter-login-password-registration-page-screen-sign-your-account-creative-metaphor_566886-2871.jpg'
+import { useState } from 'react'
+import {AiFillEyeInvisible, AiFillEye} from 'react-icons/ai'
+
 const Login = () => {
+  const [showPassword, setShowPassword] = useState(false)
+  
+    
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
     <div
@@ -13,15 +20,18 @@ const Login = () => {
           />
         </div> */}
         <div className="mt-12 flex flex-col items-center">
-          <h1 className="text-2xl xl:text-3xl font-bold">
-            Sign in for Camp <span className='text-violet-600'>Ninja</span>
+          <h1 className="text-2xl xl:text-3xl font-bold mb-3">
+            Welcome back!
+          </h1>
+          <h1 className="text-2xl xl:text-2xl font-semibold">
+            Please enter your details to login
           </h1>
           <div className="w-full flex-1 mt-8">
             <div className="flex flex-col items-center">
               <button
-                className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline"
+                className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center active:scale-[.98] ease-in-out transform active:duration-100 transition-all hover:scale-[1.01] focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline"
               >
-                <div className="bg-white p-2 rounded-full">
+                <div className="bg-white p-2 rounded-full active:scale-[.98] ease-in-out transform active:duration-100 transition-all hover:scale-[1.01]">
                   <svg className="w-4" viewBox="0 0 533.5 544.3">
                     <path
                       d="M533.5 278.4c0-18.5-1.5-37.1-4.7-55.3H272.1v104.8h147c-6.1 33.8-25.7 63.7-54.4 82.7v68h87.7c51.5-47.4 81.1-117.4 81.1-200.2z"
@@ -41,8 +51,8 @@ const Login = () => {
                     />
                   </svg>
                 </div>
-                <span className="ml-4">
-                  Sign Up with Google
+                <span className="ml-4 active:scale-[.98] ease-in-out transform active:duration-100 transition-all hover:scale-[1.01]">
+                  Sign In with Google
                 </span>
               </button>
 
@@ -53,7 +63,7 @@ const Login = () => {
               <div
                 className="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2"
               >
-                Or sign up with e-mail
+                Or sign in with email
               </div>
             </div>
 
@@ -63,13 +73,24 @@ const Login = () => {
                 type="email"
                 placeholder="Email"
               />
+              <div className='relative'>
               <input
                 className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                type="password"
+                type={(showPassword === false)? 'password' :'text'}
                 placeholder="Password"
               />
+              <div className='cursor-pointer text-2xl absolute right-3 top-9 z-10'>
+                      {
+                          (showPassword === false)? <AiFillEye onClick={() => setShowPassword(!showPassword)}/>:
+                          <AiFillEyeInvisible onClick={() =>setShowPassword(!showPassword)}/>
+
+                      }
+                      
+                      
+                  </div>
+              </div>
               <button
-                className="mt-5 tracking-wide font-semibold bg-violet-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                className="mt-5 tracking-wide font-semibold bg-violet-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 active:scale-[.98] ease-in-out transform active:duration-100 transition-all hover:scale-[1.01] flex items-center justify-center focus:shadow-outline focus:outline-none"
               >
                 <svg
                   className="w-6 h-6 -ml-2"
@@ -87,15 +108,13 @@ const Login = () => {
                   Sign Up
                 </span>
               </button>
-              <p className="mt-6 text-xs text-gray-600 text-center">
-                I agree to abide by templatana's
-                <a href="#" className="border-b border-gray-500 border-dotted">
-                  Terms of Service
-                </a>
-                and its
-                <a href="#" className="border-b border-gray-500 border-dotted">
-                  Privacy Policy
-                </a>
+              <p className="mt-6 text-base text-gray-600 text-center">
+                New to Camp <span className='text-violet-600 font-semibold'>Ninja</span>.
+                Click here to {" "}
+                <Link className=" text-violet-600 font-bold">
+                Register
+                </Link>
+                
               </p>
             </div>
           </div>
