@@ -108,9 +108,9 @@ const Login = () => {
                   Sign Up
                 </span>
               </button>
-              <p className="mt-6 text-base text-gray-600 text-center">
-                New to Camp <span className='text-violet-600 font-semibold'>Ninja</span>.
-                Click here to {" "}
+              <p className="mt-6 text-base text-gray-600 text-center font-semibold">
+                Don&apos;t have an account?
+              { " "}
                 <Link className=" text-violet-600 font-bold">
                 Register
                 </Link>
