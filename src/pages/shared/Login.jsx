@@ -2,10 +2,13 @@ import { Link } from 'react-router-dom'
 import loginImg from '../../assets/Login/enter-login-password-registration-page-screen-sign-your-account-creative-metaphor_566886-2871.jpg'
 import { useState } from 'react'
 import {AiFillEyeInvisible, AiFillEye} from 'react-icons/ai'
+import { useForm } from "react-hook-form";
+
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
-  
+  const { register, handleSubmit } = useForm();
+  const onSubmit = data => console.log(data);
     
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
@@ -13,12 +16,7 @@ const Login = () => {
       className="max-w-screen-xl m-0 sm:m-20 bg-white shadow sm:rounded-lg flex flex-row-reverse justify-center flex-1"
     >
       <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
-        {/* <div>
-          <img
-            src="https://storage.googleapis.com/devitary-image-host.appspot.com/15846435184459982716-LogoMakr_7POjrN.png"
-            className="w-32 mx-auto"
-          />
-        </div> */}
+        
         <div className="mt-12 flex flex-col items-center">
           <h1 className="text-2xl xl:text-3xl font-bold mb-3">
             Welcome back!
@@ -67,7 +65,7 @@ const Login = () => {
               </div>
             </div>
 
-            <div className="mx-auto max-w-xs">
+            <form onSubmit={handleSubmit(onSubmit)} className="mx-auto max-w-xs">
               <input
                 className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                 type="email"
@@ -116,7 +114,7 @@ const Login = () => {
                 </Link>
                 
               </p>
-            </div>
+            </form>
           </div>
         </div>
       </div>
@@ -133,3 +131,10 @@ const Login = () => {
 }
 
 export default Login
+
+{/* <div>
+          <img
+            src="https://storage.googleapis.com/devitary-image-host.appspot.com/15846435184459982716-LogoMakr_7POjrN.png"
+            className="w-32 mx-auto"
+          />
+        </div> */}
