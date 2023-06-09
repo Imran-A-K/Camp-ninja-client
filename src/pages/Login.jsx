@@ -1,11 +1,11 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import loginImg from '../../assets/Login/enter-login-password-registration-page-screen-sign-your-account-creative-metaphor_566886-2871.jpg'
+import loginImg from '../assets/Login/enter-login-password-registration-page-screen-sign-your-account-creative-metaphor_566886-2871.jpg'
 import { useState } from 'react'
 import {AiFillEyeInvisible, AiFillEye} from 'react-icons/ai'
 import { useForm } from "react-hook-form";
 import { BiError } from 'react-icons/bi';
-import useAuthentication from '../../hooks/useAuthentication';
 import Swal from 'sweetalert2';
+import useAuthentication from '../hooks/useAuthentication';
 
 
 const Login = () => {

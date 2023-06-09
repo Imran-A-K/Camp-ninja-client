@@ -1,11 +1,12 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import RegisterImg from "../../assets/Login/enter-login-password-registration-page-screen-sign-your-account-creative-metaphor_566886-2871.jpg";
+import RegisterImg from "../assets/Login/enter-login-password-registration-page-screen-sign-your-account-creative-metaphor_566886-2871.jpg";
 import { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { useForm } from "react-hook-form";
 import { BiError } from "react-icons/bi";
-import useAuthentication from "../../hooks/useAuthentication";
 import Swal from "sweetalert2";
+import useAuthentication from "../hooks/useAuthentication";
+import axios from "axios";
 
 const Register = () => {
   const [ firebaseError, setFirebaseError ] = useState("")
@@ -57,9 +58,19 @@ const Register = () => {
   }
   const signUpWithGoogle = () => {
     googleSignIn()
-      .then((result) => {
-        // const registeredUser = result.user;
-        navigate(to, { replace: true });
+      .then(async(result) => {
+        const registeredUser = result.user;
+        await axios.post(`http://localhost:4000/register-new-user`,
+         { name: registeredUser.displayName, 
+          email: registeredUser.email,
+           photoUrl: registeredUser.photoURL,
+            role: 'student' })
+            .then((response) => {
+              console.log(response);
+              navigate(to, { replace: true });
+            })
+            
+        
       })
       .catch((error) => {
         console.log("error", error.message);

@@ -22,7 +22,6 @@ import { Button, Tooltip, Avatar } from "@mui/material";
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const { user, logOut } = useAuthentication();
-  // console.log(user)
   const signOutHandler = () => {
     logOut()
       .then()
@@ -31,7 +30,9 @@ const Navbar = () => {
       });
   };
   return (
-    <div className=" bg-[#f1f4f7] mx-auto drop-shadow-md py-2 flex justify-between items-center px-4">
+    // TODO : mobile nav side bar
+    //bg-[#f1f4f7]
+    <div className=" bg-[#f5f5f5] max-w-[1300px] mx-auto drop-shadow-md py-2 flex justify-between items-center px-4">
       {/* Left side */}
       <div className="flex gap-2 items-center">
         <div
