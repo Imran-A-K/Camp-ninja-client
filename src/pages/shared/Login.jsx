@@ -1,21 +1,67 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import loginImg from '../../assets/Login/enter-login-password-registration-page-screen-sign-your-account-creative-metaphor_566886-2871.jpg'
 import { useState } from 'react'
 import {AiFillEyeInvisible, AiFillEye} from 'react-icons/ai'
 import { useForm } from "react-hook-form";
 import { BiError } from 'react-icons/bi';
+import useAuthentication from '../../hooks/useAuthentication';
+import Swal from 'sweetalert2';
 
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [ firebaseError, setFirebaseError ] = useState("")
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { signIn,
+    googleSignIn } = useAuthentication()
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
     criteriaMode: "all",
-  });  const onSubmit = data => console.log(data);
+  }); 
+  const from = location.state?.from?.pathname || "/";
+
+  const onSubmit = data => {
+    setFirebaseError("")
+    // console.log(data)
+    signIn(data.email, data.password)
+    .then(async(result) => {
+      // const user = result.user;
+      // console.log(user)
+      await Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Login Successful',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      navigate(from, { replace : true});
+    })
+    .catch((error) => {
+      // console.log(error.message)
+      if (error.message.includes("user-not-found")) {
+        setFirebaseError(
+          "We couldn't locate your account! Please double-check the accuracy of your email address. If this is your first time here, please register."
+        );
+      } else if (error.message.includes("wrong-password")) {
+        setFirebaseError("Incorrect Password! Please Enter your password correctly");
+      }
+    });
+  };
+  const signInwithGoogle = () => {
+    googleSignIn()
+      .then((result) => {
+        const googleUser = result.user;
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.log("error", error.message);
+      });
+  };
+
     
   
   return (
@@ -34,7 +80,7 @@ const Login = () => {
           </h1>
           <div className="w-full flex-1 mt-8">
             <div className="flex flex-col items-center">
-              <button
+              <button onClick={signInwithGoogle}
                 className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center active:scale-[.98] ease-in-out transform active:duration-100 transition-all hover:scale-[1.01] focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline"
               >
                 <div className="bg-white p-2 rounded-full active:scale-[.98] ease-in-out transform active:duration-100 transition-all hover:scale-[1.01]">
