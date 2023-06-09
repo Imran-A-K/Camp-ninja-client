@@ -9,68 +9,81 @@ import useAuthentication from "../hooks/useAuthentication";
 import axios from "axios";
 
 const Register = () => {
-  const [ firebaseError, setFirebaseError ] = useState("")
-  const { registerUser, updateUserProfile, googleSignIn, logOut } = useAuthentication()
+  const [firebaseError, setFirebaseError] = useState("");
+  const { registerUser, updateUserProfile, googleSignIn, logOut } =
+    useAuthentication();
   const navigate = useNavigate();
   const location = useLocation();
   const {
     register,
     handleSubmit,
     formState: { errors },
-    watch
+    watch,
   } = useForm({
     criteriaMode: "all",
   });
   const to = location.state?.from?.from?.pathname || "/";
   const onSubmit = (data) => {
-    setFirebaseError("")
-    data.role = 'user'
+    setFirebaseError("");
+    data.role = "user";
     // console.log(data);
     registerUser(data.email, data.password)
-    .then(result => {
-      const registeredUser = result.user;
-      updateUserProfile(data.name, data.photoUrl)
-      .then(async()=>{
-        await Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'Your account has been created successfully please login to continue',
-          showConfirmButton: false,
-          timer: 1500
-        })
-        // TODO: send data to backend
-        logOut()
-        .then()
-        .catch((error) => {
-          console.log(error.message);
-          });
-
-      navigate("/login");
-      })
-    })
-    .catch(error => {
-      // console.log(error.message)
-      if(error.message.includes("auth/email-already-in-use")){
-        setFirebaseError("Your account was previously registered. Please login to continue")
-      }
-    })
-    
-  }
-  const signUpWithGoogle = () => {
-    googleSignIn()
-      .then(async(result) => {
-        const registeredUser = result.user;
-        await axios.post(`http://localhost:4000/register-new-user`,
-         { name: registeredUser.displayName, 
-          email: registeredUser.email,
-           photoUrl: registeredUser.photoURL,
-            role: 'student' })
+      .then((result) => {
+        // const registeredUser = result.user;
+        updateUserProfile(data.name, data.photoUrl).then(async () => {
+          await axios
+            .post(`http://localhost:4000/register-new-user`, {
+              name: data.name,
+              email: data.email,
+              photoUrl: data.photoUrl,
+              role: "student",
+            })
             .then((response) => {
               console.log(response);
-              navigate(to, { replace: true });
-            })
-            
-        
+            });
+
+          await Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title:
+              "Your account has been created successfully please login to continue",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+
+          logOut()
+            .then()
+            .catch((error) => {
+              console.log(error.message);
+            });
+
+          navigate("/login");
+        });
+      })
+      .catch((error) => {
+        // console.log(error.message)
+        if (error.message.includes("auth/email-already-in-use")) {
+          setFirebaseError(
+            "Your account was previously registered. Please login to continue"
+          );
+        }
+      });
+  };
+  const signUpWithGoogle = () => {
+    googleSignIn()
+      .then(async (result) => {
+        const registeredUser = result.user;
+        await axios
+          .post(`http://localhost:4000/register-new-user`, {
+            name: registeredUser.displayName,
+            email: registeredUser.email,
+            photoUrl: registeredUser.photoURL,
+            role: "student",
+          })
+          .then((response) => {
+            console.log(response);
+            navigate(to, { replace: true });
+          });
       })
       .catch((error) => {
         console.log("error", error.message);
@@ -79,7 +92,7 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassConfirm, setShowPassConfirm] = useState(false);
   const password = watch("password");
-  
+
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
       <div className="max-w-screen-xl m-0 sm:m-20 bg-white shadow sm:rounded-lg flex flex-row-reverse justify-center flex-1">
@@ -91,7 +104,10 @@ const Register = () => {
             </h1>
             <div className="w-full flex-1 mt-8">
               <div className="flex flex-col items-center">
-                <button onClick={signUpWithGoogle} className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center active:scale-[.98] ease-in-out transform active:duration-100 transition-all hover:scale-[1.01] focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
+                <button
+                  onClick={signUpWithGoogle}
+                  className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center active:scale-[.98] ease-in-out transform active:duration-100 transition-all hover:scale-[1.01] focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline"
+                >
                   <div className="bg-white p-2 rounded-full active:scale-[.98] ease-in-out transform active:duration-100 transition-all hover:scale-[1.01]">
                     <svg className="w-4" viewBox="0 0 533.5 544.3">
                       <path
@@ -112,7 +128,7 @@ const Register = () => {
                       />
                     </svg>
                   </div>
-                  <span  className="ml-4 active:scale-[.98] ease-in-out transform active:duration-100 transition-all hover:scale-[1.01]">
+                  <span className="ml-4 active:scale-[.98] ease-in-out transform active:duration-100 transition-all hover:scale-[1.01]">
                     Sign Up with Google
                   </span>
                 </button>
@@ -123,9 +139,11 @@ const Register = () => {
                   Or sign up with email
                 </div>
               </div>
-              <div className='text-center mb-4'>
-            <span className='text-red-500 font-semibold'>{firebaseError}</span>
-            </div>
+              <div className="text-center mb-4">
+                <span className="text-red-500 font-semibold">
+                  {firebaseError}
+                </span>
+              </div>
               <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="mx-auto max-w-xs"
@@ -155,8 +173,8 @@ const Register = () => {
                     required: "Email is required.",
                     pattern: {
                       value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: "Invalid email address."
-                    }
+                      message: "Invalid email address.",
+                    },
                   })}
                   aria-invalid={errors.email ? "true" : "false"}
                 />
@@ -177,21 +195,21 @@ const Register = () => {
                     placeholder="Password"
                     {...register("password", {
                       required: "Password is required.",
-                    //   pattern: {
-                    //     value: /^(?=.*[A-Z]).*$/,
-                    //     message: "Password must have a capital letter."
-                    //   },
-                    //   validate: (value) => {
-                    //     const hasSpecialCharacter = /^(?=.*[!@#$%^&*()_\-+=|\\[\]{};:'",.<>\/?]).*$/.test(
-                    //       value
-                    //     );
-                    //     return (
-                    //       hasSpecialCharacter || {
-                    //         value: false,
-                    //         message: "Password must have a special character."
-                    //       }
-                    //     );
-                    //   },
+                      //   pattern: {
+                      //     value: /^(?=.*[A-Z]).*$/,
+                      //     message: "Password must have a capital letter."
+                      //   },
+                      //   validate: (value) => {
+                      //     const hasSpecialCharacter = /^(?=.*[!@#$%^&*()_\-+=|\\[\]{};:'",.<>\/?]).*$/.test(
+                      //       value
+                      //     );
+                      //     return (
+                      //       hasSpecialCharacter || {
+                      //         value: false,
+                      //         message: "Password must have a special character."
+                      //       }
+                      //     );
+                      //   },
                       validate: (value) => {
                         const hasSpecialCharacter =
                           /^(?=.*[!@#$%^&*()_\-+=|\\[\]{};:'",.<>\/?]).*$/.test(
@@ -225,8 +243,8 @@ const Register = () => {
                     )}
                   </div>
                   {errors?.password?.type === "required" ||
-                  errors?.password?.type === "validate" || 
-                  errors?.password?.type === "minLength"  ? (
+                  errors?.password?.type === "validate" ||
+                  errors?.password?.type === "minLength" ? (
                     <p
                       className="pl-1 pt-2 flex items-center gap-2 text-base text-red-500"
                       role="alert"
@@ -244,7 +262,11 @@ const Register = () => {
                     type={showPassConfirm === false ? "password" : "text"}
                     name="confirmPassword"
                     placeholder="Confirm Password"
-                    {...register("confirmPassword" , { required: 'Please Confirm your password', validate: (value) => value === password || "Passwords do not match." })}
+                    {...register("confirmPassword", {
+                      required: "Please Confirm your password",
+                      validate: (value) =>
+                        value === password || "Passwords do not match.",
+                    })}
                   />
                   <div className="cursor-pointer text-2xl absolute right-3 top-9 z-10">
                     {showPassConfirm === false ? (
@@ -258,7 +280,7 @@ const Register = () => {
                     )}
                   </div>
                   {errors?.confirmPassword?.type === "required" ||
-                  errors?.confirmPassword?.type === "validate"   ? (
+                  errors?.confirmPassword?.type === "validate" ? (
                     <p
                       className="pl-1 pt-2 flex items-center gap-2 text-base text-red-500"
                       role="alert"
