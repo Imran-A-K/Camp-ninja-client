@@ -14,7 +14,7 @@ const AuthenticationProviders = ({ children }) => {
 
 
 
-  const createUser = (email, password) => {
+  const registerUser = (email, password) => {
     setLoading(true)
    return createUserWithEmailAndPassword(auth, email, password)
   }
@@ -64,7 +64,7 @@ const AuthenticationProviders = ({ children }) => {
     user,
     loading,
     useCartQueryEnabler,
-    createUser,
+    registerUser,
     signIn,
     logOut,
     updateUserProfile,

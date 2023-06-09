@@ -1,11 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import RegisterImg from "../../assets/Login/enter-login-password-registration-page-screen-sign-your-account-creative-metaphor_566886-2871.jpg";
 import { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { useForm } from "react-hook-form";
 import { BiError } from "react-icons/bi";
+import useAuthentication from "../../hooks/useAuthentication";
+import Swal from "sweetalert2";
 
 const Register = () => {
+  const [ firebaseError, setFirebaseError ] = useState("")
+  const { registerUser, updateUserProfile, googleSignIn, logOut } = useAuthentication()
+  const navigate = useNavigate();
+  const location = useLocation();
   const {
     register,
     handleSubmit,
@@ -14,7 +20,51 @@ const Register = () => {
   } = useForm({
     criteriaMode: "all",
   });
-  const onSubmit = (data) => console.log(data);
+  const to = location.state?.from?.from?.pathname || "/";
+  const onSubmit = (data) => {
+    setFirebaseError("")
+    data.role = 'user'
+    // console.log(data);
+    registerUser(data.email, data.password)
+    .then(result => {
+      const registeredUser = result.user;
+      updateUserProfile(data.name, data.photoUrl)
+      .then(async()=>{
+        await Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Your account has been created successfully please login to continue',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        // TODO: send data to backend
+        logOut()
+        .then()
+        .catch((error) => {
+          console.log(error.message);
+          });
+
+      navigate("/login");
+      })
+    })
+    .catch(error => {
+      // console.log(error.message)
+      if(error.message.includes("auth/email-already-in-use")){
+        setFirebaseError("Your account was previously registered. Please login to continue")
+      }
+    })
+    
+  }
+  const signUpWithGoogle = () => {
+    googleSignIn()
+      .then((result) => {
+        // const registeredUser = result.user;
+        navigate(to, { replace: true });
+      })
+      .catch((error) => {
+        console.log("error", error.message);
+      });
+  };
   const [showPassword, setShowPassword] = useState(false);
   const [showPassConfirm, setShowPassConfirm] = useState(false);
   const password = watch("password");
@@ -30,7 +80,7 @@ const Register = () => {
             </h1>
             <div className="w-full flex-1 mt-8">
               <div className="flex flex-col items-center">
-                <button className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center active:scale-[.98] ease-in-out transform active:duration-100 transition-all hover:scale-[1.01] focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
+                <button onClick={signUpWithGoogle} className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center active:scale-[.98] ease-in-out transform active:duration-100 transition-all hover:scale-[1.01] focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
                   <div className="bg-white p-2 rounded-full active:scale-[.98] ease-in-out transform active:duration-100 transition-all hover:scale-[1.01]">
                     <svg className="w-4" viewBox="0 0 533.5 544.3">
                       <path
@@ -51,7 +101,7 @@ const Register = () => {
                       />
                     </svg>
                   </div>
-                  <span className="ml-4 active:scale-[.98] ease-in-out transform active:duration-100 transition-all hover:scale-[1.01]">
+                  <span  className="ml-4 active:scale-[.98] ease-in-out transform active:duration-100 transition-all hover:scale-[1.01]">
                     Sign Up with Google
                   </span>
                 </button>
@@ -62,7 +112,9 @@ const Register = () => {
                   Or sign up with email
                 </div>
               </div>
-
+              <div className='text-center mb-4'>
+            <span className='text-red-500 font-semibold'>{firebaseError}</span>
+            </div>
               <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="mx-auto max-w-xs"
@@ -207,9 +259,9 @@ const Register = () => {
                 <input
                   className="w-full mt-4 px-8 py-4 mb-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                   type="text"
-                  name="url"
-                  {...register("url", {
-                    required: "URL is required",
+                  name="photoUrl"
+                  {...register("photoUrl", {
+                    required: "Your photo URL is required",
                     pattern: {
                       value: /^(ftp|http|https):\/\/[^ "]+$/,
                       message: "Invalid URL format",
@@ -217,10 +269,10 @@ const Register = () => {
                   })}
                   placeholder="Enter your Photo URL"
                 />
-                {errors.url && (
+                {errors.photoUrl && (
                   <span className="pl-1 pt-1 flex items-center gap-2 text-base text-red-500">
                     <BiError />
-                    {errors.url.message}
+                    {errors.photoUrl.message}
                   </span>
                 )}
                 <button className="mt-5 tracking-wide font-semibold bg-violet-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 active:scale-[.98] ease-in-out transform active:duration-100 transition-all hover:scale-[1.01] flex items-center justify-center focus:shadow-outline focus:outline-none">

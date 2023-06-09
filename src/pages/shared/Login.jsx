@@ -8,6 +8,7 @@ import { BiError } from 'react-icons/bi';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
+  const [ firebaseError, setFirebaseError ] = useState("")
   const {
     register,
     handleSubmit,
@@ -72,6 +73,9 @@ const Login = () => {
               </div>
             </div>
 
+            <div className='text-center mb-4'>
+            <span className='text-red-500 font-semibold'>{firebaseError}</span>
+            </div>
             <form onSubmit={handleSubmit(onSubmit)} className="mx-auto max-w-xs">
               <input
                 className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
