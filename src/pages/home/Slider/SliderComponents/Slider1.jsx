@@ -11,15 +11,15 @@ const Slider1 = () => {
           Unleash Your Inner    
           </p>
           <p className='text-5xl capitalize font-semibold'>Champion at our </p>
-            <p className="text-purple-500 text-5xl capitalize font-semibold">Sports Summer Camp!</p>{" "}
+            <p className="text-purple-500 text-5xl capitalize font-semibold">Summer Sports Camp!</p>{" "}
           <p className="text-lg text-gray-800 mt-2">
             We provide you with the latest camping system {" "}
             <br />
-            based on all kinds of sorts.
+            based on all kinds of sorts of lates equipment.
           </p>
          
-          <div className="flex gap-6 items-center pt-6">
-            <div className="flex gap-2 items-center">
+          <div className="flex gap-6 max-sm:gap-4 max-sm:px-4 items-center pt-6">
+            <div className="max-sm:hidden flex gap-2 items-center">
                 <img src={publicImg} alt="" />
                 <p>Public Speaking</p>
             </div>
@@ -35,7 +35,7 @@ const Slider1 = () => {
         </div>
 
         <div>
-        <img className='w-[611px] h-[472px] max-sm:w-[350px] max-sm:h-[300px] max-sm:pt-7 rounded-full' src={"https://images.pexels.com/photos/16008185/pexels-photo-16008185/free-photo-of-jockey-on-horse-on-competition.jpeg?auto=compress&cs=tinysrgb&w=600"} alt="" />
+        <img className='w-[611px] h-[472px] max-sm:w-[350px] max-sm:h-[300px] max-sm:pt-7 rounded-full' src={"https://images.pexels.com/photos/3628912/pexels-photo-3628912.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"} alt="" />
         </div>
       </div>
     </div>

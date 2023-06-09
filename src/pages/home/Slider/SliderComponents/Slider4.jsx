@@ -1,6 +1,6 @@
-import publicImg from '../../assets/Slider/public.svg'
-import healthImg from '../../assets/Slider/heart.svg'
-import think from '../../assets/Slider/think.svg'
+import healthImg from '../../../../assets/Slider/heart.svg'
+import publicImg from '../../../../assets/Slider/public.svg'
+import think from '../../../../assets/Slider/think.svg'
 const Slider4 = () => {
   return (
     <div className="max-w-[1300px] mx-auto max-sm:px-8 ">
