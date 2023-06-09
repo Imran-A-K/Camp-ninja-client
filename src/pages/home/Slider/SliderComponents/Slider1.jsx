@@ -1,8 +1,7 @@
-import publicImg from '../../assets/Slider/public.svg'
-import healthImg from '../../assets/Slider/heart.svg'
-import think from '../../assets/Slider/think.svg'
-import hero from '../../assets/Slider/hero.png'
-const Slider = () => {
+import healthImg from '../../../../assets/Slider/heart.svg'
+import publicImg from '../../../../assets/Slider/public.svg'
+import think from '../../../../assets/Slider/think.svg'
+const Slider1 = () => {
   return (
     <div className="max-w-[1300px] mx-auto max-sm:px-8 ">
       <div className="flex flex-col md:flex-row justify-between items-center py-10">
@@ -36,7 +35,6 @@ const Slider = () => {
         </div>
 
         <div>
-        {/* <img src={hero} alt="" /> */}
         <img className='w-[611px] h-[472px] max-sm:w-[350px] max-sm:h-[300px] max-sm:pt-7 rounded-full' src={"https://images.pexels.com/photos/16008185/pexels-photo-16008185/free-photo-of-jockey-on-horse-on-competition.jpeg?auto=compress&cs=tinysrgb&w=600"} alt="" />
         </div>
       </div>
@@ -44,4 +42,4 @@ const Slider = () => {
   )
 }
 
-export default Slider
+export default Slider1
