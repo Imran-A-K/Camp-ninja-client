@@ -3,6 +3,7 @@ import Main from "../Layout/Main";
 import Nor from "../pages/Nor";
 import Login from "../pages/shared/Login";
 import Register from "../pages/shared/Register";
+import Home from "../pages/home/Home";
 
 export const router = createBrowserRouter([
     {
@@ -12,7 +13,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Nor />
+                element: <Home />
             },
             {
                 path: '/login',
