@@ -1,23 +1,20 @@
 import { Outlet } from "react-router-dom";
 import Footer from "../pages/shared/Footer";
 import Navbar from "../pages/shared/Navbar/Navbar";
-import StudentSideBar from "../pages/dashboard/StudentSideBar";
-
-const StudentDashBoard = () => {
+import InstructorSideBar from "../pages/dashboard/InstructorSideBar";
+const InstructorDashBoard = () => {
   return (
-  <div className="max-w-[1300px] mx-auto">
+    <div className="max-w-[1300px] mx-auto">
 <Navbar></Navbar>
 <div className="flex gap-5">
-  <StudentSideBar />
+  <InstructorSideBar />
   <div className="max-w-5xl flex-1 mx-auto py-4">
     <Outlet />
   </div>
 </div>
 <Footer></Footer>
-</div> 
-  );
-};
+</div>
+  )
+}
 
-export default StudentDashBoard;
-
-
+export default InstructorDashBoard

@@ -4,6 +4,8 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Home from "../pages/home/Home";
 import StudentDashBoard from "../Layout/StudentDashBoard";
+import InstructorDashBoard from "../Layout/InstructorDashBoard";
+import AdminDashBoard from "../Layout/AdminDashBoard";
 
 export const router = createBrowserRouter([
     {
@@ -29,6 +31,26 @@ export const router = createBrowserRouter([
     {
         path: '/student-dashboard',
         element: <StudentDashBoard />,
+        children: [
+            {
+                path: 's',
+                element: <div>dd</div>
+            }
+        ]
+    },
+    {
+        path: '/intructor-dashboard',
+        element: <InstructorDashBoard />,
+        children: [
+            {
+                path: 's',
+                element: <div>dd</div>
+            }
+        ]
+    },
+    {
+        path: '/admin-dashboard',
+        element: <AdminDashBoard />,
         children: [
             {
                 path: 's',

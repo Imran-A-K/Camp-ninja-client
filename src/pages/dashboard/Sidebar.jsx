@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useRef } from "react";
-import SubMenu from "./SubMenu";
 import { motion } from "framer-motion";
 
 // * React icons
@@ -69,14 +68,7 @@ const Sidebar = () => {
         },
       };
 
-  const subMenusList = [
-   
-    {
-      name: "Payments History",
-      icon: TbReportAnalytics,
-      menus: ["dashboard", "realtime", "events"],
-    },
-  ];
+ 
 
   return (
     <div >
@@ -96,10 +88,11 @@ const Sidebar = () => {
          h-screen "
       >
         <div className="flex items-center font-medium border-b py-3 border-slate-300 mx-6">
-      {!open && <span className="text-xl mt-3 whitespace-pre">Hi,</span>
-}
+      {/* {!open && <span className="text-xl mt-3 whitespace-pre">Hi,</span>} */}
+      {!open && <img className="w-20 rounded-full" src={user.photoURL} />}
   {open && <span className="text-xl mt-3 whitespace-pre">Hi,{user?.displayName}</span>
 }
+
         </div>
 
         <div className="flex flex-col  h-full">
@@ -134,7 +127,12 @@ const Sidebar = () => {
                 </div>
               </div>
             )}
-            
+            {!open && <li>
+              <NavLink to={"/authentication"} className="link">
+                <TbReportAnalytics size={23} className="min-w-max" />
+                Payments History
+              </NavLink>
+            </li>}
           </ul>
           
         </div>
