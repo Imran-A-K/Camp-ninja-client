@@ -7,6 +7,7 @@ import StudentDashBoard from "../Layout/StudentDashBoard";
 import InstructorDashBoard from "../Layout/InstructorDashBoard";
 import AdminDashBoard from "../Layout/AdminDashBoard";
 import AddClass from "../pages/dashboard/Instructor/AddClass";
+import MyClasses from "../pages/dashboard/Instructor/MyClasses";
 
 export const router = createBrowserRouter([
     {
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
             {
                 path: 'add-class',
                 element: <AddClass />
+            },
+            {
+                path: 'my-classes',
+                element: <MyClasses />
             }
         ]
     },

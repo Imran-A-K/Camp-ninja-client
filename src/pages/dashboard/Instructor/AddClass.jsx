@@ -49,7 +49,7 @@ const AddClass = () => {
     const price = parseFloat(data.price);
     const availableSeats = parseInt(data.availableSeats);
     const status = "pending"
-    console.log(data);
+    // console.log(data);
     const ImageData = new FormData()
     ImageData.append('image', data.classImage[0]);
     fetch(image_hosting_api,{
@@ -64,7 +64,7 @@ const AddClass = () => {
                 // console.log(newClass)
             await axiosBase.post('/add-class',newClass)
             .then(response => {
-                console.log("adding class to database -- response--", response)
+                // console.log("adding class to database -- response--", response)
                 if(response.data.insertedId){
                     Swal.fire({
                         title: 'Your class has been added successfully',
@@ -222,7 +222,7 @@ const AddClass = () => {
               </label>
               <div className="form-control w-full">
   
-  <input type="file" className="file-input  file-input-primary block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+  <input type="file" className="file-input file-input-primary file-input-bordered block w-full mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 "
   {...register('classImage', {
     required: 'Image is required',
     validate: {
