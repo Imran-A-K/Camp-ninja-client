@@ -10,8 +10,7 @@ const AuthenticationProviders = ({ children }) => {
     const googleProvider = new GoogleAuthProvider();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [ useCartQueryEnabler, setUseCartQueryEnabler ] = useState(false);
-
+  const [queryEnabler, setQueryEnabler] = useState(false);
 
 
   const registerUser = (email, password) => {
@@ -44,9 +43,11 @@ const AuthenticationProviders = ({ children }) => {
           localStorage.setItem('access-token', data.data.token)
          
         })
+        setQueryEnabler(true)
       }
       else{
         localStorage.removeItem('access-token')
+        setQueryEnabler(false)
       }
       setLoading(false)
 
@@ -60,12 +61,12 @@ const AuthenticationProviders = ({ children }) => {
   const authFunctions = {
     user,
     loading,
-    useCartQueryEnabler,
     registerUser,
     signIn,
     logOut,
     updateUserProfile,
-    googleSignIn
+    googleSignIn,
+    queryEnabler
   };
   return (
     <AuthContext.Provider value={authFunctions}>{children}</AuthContext.Provider>
