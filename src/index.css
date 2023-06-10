@@ -17,6 +17,13 @@
 .navbar-logOut-btn{
   @apply hidden text-lg lg:block active:scale-[.98] ease-in-out transform active:duration-100 transition-all hover:scale-[1.01] mr-4 w-40 py-4 bg-black rounded-xl text-white font-bold
 }
+.link {
+  @apply p-2.5 flex rounded-md gap-6 items-center md:cursor-pointer cursor-default duration-300 font-semibold;
+}
+
+.active {
+  @apply bg-blue-100 text-blue-600;
+}
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

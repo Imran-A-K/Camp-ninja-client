@@ -3,6 +3,7 @@ import Main from "../Layout/Main";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Home from "../pages/home/Home";
+import StudentDashBoard from "../Layout/StudentDashBoard";
 
 export const router = createBrowserRouter([
     {
@@ -24,5 +25,15 @@ export const router = createBrowserRouter([
             }
         ]
         
+    },
+    {
+        path: '/student-dashboard',
+        element: <StudentDashBoard />,
+        children: [
+            {
+                path: 's',
+                element: <div>dd</div>
+            }
+        ]
     }
 ])
