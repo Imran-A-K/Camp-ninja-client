@@ -7,7 +7,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import { SlSettings } from "react-icons/sl";
 import { AiOutlineAppstore } from "react-icons/ai";
 import { BsPerson } from "react-icons/bs";
-import { HiOutlineDatabase } from "react-icons/hi";
+import { HiOutlineDatabase, HiOutlinePlus, HiOutlinePlusCircle } from "react-icons/hi";
 import { TbReportAnalytics } from "react-icons/tb";
 import { RiBuilding3Line } from "react-icons/ri";
 import { useMediaQuery } from "react-responsive";
@@ -99,39 +99,19 @@ const InstructorSideBar = () => {
               <li>
                 <NavLink to={"/"} className="link">
                   <AiOutlineAppstore size={23} className="min-w-max" />
-                  My Selected Classes
+                  My Classes
                 </NavLink>
               </li>
               <li>
                 <NavLink to={"/authentication"} className="link">
-                  <BsPerson size={23} className="min-w-max" />
-                  My Enrolled CLasses
+                  <HiOutlinePlusCircle size={23} className="min-w-max" />
+                  Add a class
                 </NavLink>
               </li>
               
   
-              {(open || isTabletMid) && (
-                <div className="border-t py-5 border-slate-300 ">
-                  <small className="pl-3 text-slate-500 inline-block mb-2">
-                    Payments
-                  </small>
-                  
-                  <div className="flex flex-col gap-1">
-                  <li>
-                <NavLink to={"/authentication"} className="link">
-                  <TbReportAnalytics size={23} className="min-w-max" />
-                  Payments History
-                </NavLink>
-              </li>
-                  </div>
-                </div>
-              )}
-              {!open && <li>
-                <NavLink to={"/authentication"} className="link">
-                  <TbReportAnalytics size={23} className="min-w-max" />
-                  Payments History
-                </NavLink>
-              </li>}
+              
+              
             </ul>
             
           </div>

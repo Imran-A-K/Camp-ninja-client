@@ -39,7 +39,7 @@ export const router = createBrowserRouter([
         ]
     },
     {
-        path: '/intructor-dashboard',
+        path: '/instructor-dashboard',
         element: <InstructorDashBoard />,
         children: [
             {
