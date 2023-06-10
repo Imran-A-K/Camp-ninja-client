@@ -2,11 +2,15 @@ import { useRef, useState } from "react";
 import useAuthentication from "../../../hooks/useAuthentication";
 import { useForm } from "react-hook-form";
 import { BiError } from "react-icons/bi";
+import useAxiosInterceptor from "../../../hooks/useAxiosInterceptor";
+import Swal from "sweetalert2";
 const img_hosting_token= import.meta.env.VITE_Image_Upload_Token
 
 const AddClass = () => {
   const { user } = useAuthentication();
-  const image_hosting_url= `https://api.imgbb.com/1/upload?key=${img_hosting_token}`
+  const [axiosBase] = useAxiosInterceptor();
+  const image_hosting_api= `https://api.imgbb.com/1/upload?key=${img_hosting_token}`
+//   console.log(image_hosting_api)
 
 //   const [imageName, setImageName] = useState("");
 //   const fileInputRef = useRef(null);
@@ -32,11 +36,12 @@ const AddClass = () => {
     handleSubmit,
     formState: { errors },
     watch,
+    reset
   } = useForm({
     criteriaMode: "all",
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = async(data) => {
     const instructorName = user?.displayName;
     const instructorEmail = user?.email;
     const feedback = "";
@@ -44,10 +49,38 @@ const AddClass = () => {
     const price = parseFloat(data.price);
     const availableSeats = parseInt(data.availableSeats);
     const status = "pending"
-    const newClass = { instructorName, instructorEmail, className: data.className, price, feedback, enrolled, availableSeats,status}
-    console.log(newClass)
     console.log(data);
-
+    const ImageData = new FormData()
+    ImageData.append('image', data.classImage[0]);
+    fetch(image_hosting_api,{
+        method: 'POST',
+        body: ImageData
+      })
+      .then(response => response.json())
+      .then(async(apiResponse) =>{
+        if(apiResponse.success){
+            const classImageURL = apiResponse.data.display_url;
+            const newClass = { instructorName, instructorEmail, className: data.className, price, feedback, enrolled, availableSeats,status,classImage: classImageURL}
+                // console.log(newClass)
+            await axiosBase.post('/add-class',newClass)
+            .then(response => {
+                console.log("adding class to database -- response--", response)
+                if(response.data.insertedId){
+                    Swal.fire({
+                        title: 'Your class has been added successfully',
+                        showClass: {
+                          popup: 'animate__animated animate__fadeInDown'
+                        },
+                        hideClass: {
+                          popup: 'animate__animated animate__fadeOutUp'
+                        }
+                      })
+                    reset();
+                }
+            })
+        }
+      })
+      .catch(error =>console.log(error.message))
   };
 //   console.log(errors);
   return (
@@ -123,7 +156,7 @@ const AddClass = () => {
                 className="text-white dark:text-gray-200"
                 htmlFor="passwordConfirmation"
               >
-                Price
+                Price($)
               </label>
               <input
                 id="passwordConfirmation"
