@@ -41,9 +41,9 @@ const AuthenticationProviders = ({ children }) => {
         await axios.post('http://localhost:4000/jwt', { email: currentUser.email })
         .then(data => {
           localStorage.setItem('access-token', data.data.token)
-         
+          setQueryEnabler(true)
         })
-        setQueryEnabler(true)
+        
       }
       else{
         localStorage.removeItem('access-token')
