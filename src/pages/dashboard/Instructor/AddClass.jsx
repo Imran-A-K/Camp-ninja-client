@@ -187,7 +187,7 @@ const AddClass = () => {
               <label className="block text-sm font-medium text-white">
                 Class Image
               </label>
-              <div className="form-control w-full max-w-xs">
+              <div className="form-control w-full">
   
   <input type="file" className="file-input  file-input-primary block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
   {...register('classImage', {
@@ -214,7 +214,7 @@ const AddClass = () => {
 
           <div className="flex justify-end mt-6">
             <button className="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600">
-              Save
+              Submit
             </button>
           </div>
         </form>

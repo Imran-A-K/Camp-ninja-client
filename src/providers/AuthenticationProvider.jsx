@@ -38,19 +38,16 @@ const AuthenticationProviders = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, async(currentUser) => {
         setUser(currentUser)
         
-    //   if(currentUser){
-    //     await axios.post('https://bistro-boss-server-drab.vercel.app/jwt', { email: currentUser.email })
-    //     .then(data => {
-    //       // console.log(data.data.token)
-    //       localStorage.setItem('access-token', data.data.token)
-    //       setUseCartQueryEnabler(true)
+      if(currentUser){
+        await axios.post('http://localhost:4000/jwt', { email: currentUser.email })
+        .then(data => {
+          localStorage.setItem('access-token', data.data.token)
          
-    //     })
-    //   }
-    //   else{
-    //     localStorage.removeItem('access-token')
-    //     setUseCartQueryEnabler(false)
-    //   }
+        })
+      }
+      else{
+        localStorage.removeItem('access-token')
+      }
       setLoading(false)
 
         console.log(currentUser)
