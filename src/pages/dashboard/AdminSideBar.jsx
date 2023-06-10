@@ -129,7 +129,7 @@ const AdminSideBar = () => {
                   }
                 : {
                     x: -10,
-                    y: 200,
+                    y: 10,
                     rotate: 180,
                   }
             }

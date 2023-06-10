@@ -84,7 +84,7 @@ const InstructorSideBar = () => {
           animate={open ? "open" : "closed"}
           className=" bg-[#f5f5f5] drop-shadow-md text-gray shadow-xl z-[999] max-w-[16rem]  w-[16rem] 
               overflow-hidden md:relative fixed
-           h-screen "
+           h-full min-h-screen"
         >
           <div className="flex items-center font-medium border-b py-3 border-slate-300 mx-6">
         {/* {!open && <span className="text-xl mt-3 whitespace-pre">Hi,</span>} */}
@@ -103,7 +103,7 @@ const InstructorSideBar = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to={"/authentication"} className="link">
+                <NavLink to={"/instructor-dashboard/add-class"} className="link">
                   <HiOutlinePlusCircle size={23} className="min-w-max" />
                   Add a class
                 </NavLink>
@@ -128,7 +128,7 @@ const InstructorSideBar = () => {
                   }
                 : {
                     x: -10,
-                    y: 200,
+                    y: 10,
                     rotate: 180,
                   }
             }

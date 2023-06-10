@@ -149,7 +149,7 @@ const StudentSideBar = () => {
                   }
                 : {
                     x: -10,
-                    y: 200,
+                    y: 20,
                     rotate: 180,
                   }
             }

@@ -24,6 +24,12 @@
 .active {
   @apply bg-blue-100 text-blue-600;
 }
+#FileUpload.active {
+
+  /* @apply shadow-outline-blue border-blue-300; */
+  box-shadow: 0 0 0 3px rgba(164, 202, 254, 0.45);
+  border-color: #a4cafe;
+}
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
