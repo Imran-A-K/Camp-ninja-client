@@ -3,9 +3,9 @@ import publicImg from '../../../../assets/Slider/public.svg'
 import think from '../../../../assets/Slider/think.svg'
 const Slider1 = () => {
   return (
-    <div className="max-w-[1300px] mx-auto max-sm:px-8 ">
+    <div className="max-w-[1300px] mx-auto max-sm:px-8 z-10">
       <div className="flex flex-col md:flex-row justify-between items-center py-10">
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 ">
           <p className="text-5xl capitalize font-semibold">
 
           Unleash Your Inner    

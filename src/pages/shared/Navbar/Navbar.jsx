@@ -8,9 +8,14 @@ import {
 import { BsFillCartFill, BsFillSaveFill } from "react-icons/bs";
 import { TbTruckDelivery } from "react-icons/tb";
 import {
+  FaChalkboard,
+  FaChalkboardTeacher,
+  FaListAlt,
+  FaUserAltSlash,
   FaUserCircle,
   FaUserFriends,
   FaUserNinja,
+  FaUserPlus,
   FaWallet,
 } from "react-icons/fa";
 import { MdFavorite, MdHelp } from "react-icons/md";
@@ -18,10 +23,10 @@ import useAuthentication from "../../../hooks/useAuthentication";
 import logo from "/ninja-Logo.ico";
 import { Link, NavLink } from "react-router-dom";
 import { Button, Tooltip, Avatar } from "@mui/material";
+import { HiHome } from "react-icons/hi";
 
 const Navbar = () => {
-  const [nav, setNav] = useState(false);
-  const { user, logOut } = useAuthentication();
+  const { user, logOut, nav, setNav } = useAuthentication();
   const signOutHandler = () => {
     logOut()
       .then()
@@ -30,10 +35,8 @@ const Navbar = () => {
       });
   };
   return (
-    // TODO : mobile nav side bar
     //bg-[#f1f4f7]
     <div className=" bg-[#f5f5f5] max-w-[1300px] mx-auto drop-shadow-md py-2 flex justify-between items-center px-4">
-      {/* Left side */}
       <div className="flex gap-2 items-center">
         <div
           onClick={() => setNav(!nav)}
@@ -47,10 +50,11 @@ const Navbar = () => {
         </h1>
       </div>
 
-      {/* Mobile Menu */}
-      {/* Overlay */}
       {nav ? (
-        <div className="bg-black/80 fixed w-full h-screen z-10 top-0 left-0"></div>
+        <div
+          onClick={() => setNav(!nav)}
+          className="bg-black/80 fixed w-full h-screen z-10 top-0 left-0"
+        ></div>
       ) : (
         ""
       )}
@@ -62,29 +66,29 @@ const Navbar = () => {
               className={({ isActive }) =>
                 isActive ? "actiVatedTab" : "defaultTab"
               }
-              // to="/"
+              to="/"
             >
               Home
             </NavLink>
           </li>
-          {user && (
-            <li>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? "actiVatedTab" : "defaultTab"
-                }
-                // to="myToys"
-              >
-                Instructors
-              </NavLink>
-            </li>
-          )}
+
           <li>
             <NavLink
               className={({ isActive }) =>
                 isActive ? "actiVatedTab" : "defaultTab"
               }
-              // to="allToys"
+              to="/instructors"
+            >
+              Instructors
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "actiVatedTab" : "defaultTab"
+              }
+              to="/classes"
             >
               Classes
             </NavLink>
@@ -119,20 +123,23 @@ const Navbar = () => {
                   src={user?.photoURL}
                   sx={{ width: 45, height: 45 }}
                 />
-                
               </Button>
             </Tooltip>
 
-            
-
             <button onClick={signOutHandler} className="navbar-btn">
-              Log Out
+              <div className="flex gap-4 items-center justify-center">
+                Log Out <FaUserAltSlash />
+              </div>
             </button>
           </div>
         ) : (
           <div className="flex">
             <Link to="/login">
-              <button className="navbar-logOut-btn">Login</button>
+              <button className="navbar-logOut-btn">
+                <div className="flex gap-4 items-center justify-center">
+                  Login <FaUserPlus />
+                </div>
+              </button>
             </Link>
           </div>
         )}
@@ -142,41 +149,85 @@ const Navbar = () => {
       <div
         className={
           nav
-            ? "fixed top-0 left-0 w-[300px] h-screen bg-white z-10 duration-300"
+            ? "fixed top-0 left-0 w-[300px] h-screen bg-white z-40 duration-500"
             : "fixed top-0 left-[-100%] w-[300px] h-screen bg-white z-10 duration-300"
         }
       >
         <AiOutlineClose
           onClick={() => setNav(!nav)}
           size={30}
-          className="absolute right-4 top-4 cursor-pointer"
+          className="absolute right-4 top-10 cursor-pointer"
         />
-        <h2 className="text-2xl p-4">
-          Best <span className="font-bold">Eats</span>
-        </h2>
+        <div className="flex gap-4 items-center ml-4 mt-10">
+          <FaUserNinja className="text-2xl text-violet-600"></FaUserNinja>
+          <h1 className="text-2xl sm:text-3xl lg:text-3xl px-2">
+            Camp <span className="font-bold text-violet-600">Ninja</span>
+          </h1>
+        </div>
         <nav>
           <ul className="flex flex-col p-4 text-gray-800">
-            <li className="text-xl py-4 flex">
-              <TbTruckDelivery size={25} className="mr-4" /> Orders
-            </li>
-            <li className="text-xl py-4 flex">
-              <MdFavorite size={25} className="mr-4" /> Favorites
-            </li>
-            <li className="text-xl py-4 flex">
-              <FaWallet size={25} className="mr-4" /> Wallet
-            </li>
-            <li className="text-xl py-4 flex">
-              <MdHelp size={25} className="mr-4" /> Help
-            </li>
-            <li className="text-xl py-4 flex">
-              <AiFillTag size={25} className="mr-4" /> Promotions
-            </li>
-            <li className="text-xl py-4 flex">
-              <BsFillSaveFill size={25} className="mr-4" /> Best Ones
-            </li>
-            <li className="text-xl py-4 flex">
-              <FaUserFriends size={25} className="mr-4" /> Invite Friends
-            </li>
+            <NavLink
+              onClick={() => setNav(!nav)}
+              className={({ isActive }) =>
+                isActive ? "actiVatedTab" : "defaultTab"
+              }
+              to="/"
+            >
+              <li className="text-xl py-4 flex">
+                <HiHome size={25} className="mr-4" /> Home
+              </li>
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "actiVatedTab" : "defaultTab"
+              }
+              to="/instructors"
+              onClick={() => setNav(!nav)}
+            >
+              <li className="text-xl py-4 flex">
+                <FaChalkboardTeacher size={25} className="mr-4" /> Instructors
+              </li>
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "actiVatedTab" : "defaultTab"
+              }
+              to="/classes"
+              onClick={() => setNav(!nav)}
+            >
+              <li className="text-xl py-4 flex">
+                <FaChalkboard size={25} className="mr-4" /> Classes
+              </li>
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "actiVatedTab" : "defaultTab"
+              }
+              // to="/classes"
+              onClick={() => setNav(!nav)}
+            >
+              <li className="text-xl py-4 flex">
+                <FaListAlt size={25} className="mr-4" /> Dashboard
+              </li>
+            </NavLink>
+
+            {!user ? (
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "actiVatedTab" : "defaultTab"
+                }
+                to="/login"
+                onClick={() => setNav(!nav)}
+              >
+                <li className="text-xl py-4 flex">
+                  <FaUserPlus size={25} className="mr-4" /> Login
+                </li>
+              </NavLink>
+            ) : (
+              <li onClick={signOutHandler} className="text-xl font-semibold py-4 flex">
+                <FaUserAltSlash size={25} className="mr-4" /> Logout
+              </li>
+            )}
           </ul>
         </nav>
       </div>
