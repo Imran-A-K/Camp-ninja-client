@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAuthentication from "../../../hooks/useAuthentication";
 import useAxiosInterceptor from "../../../hooks/useAxiosInterceptor";
 import useGetClasses from "../../../hooks/useGetClasses";
@@ -9,8 +9,42 @@ const ManageClasses = () => {
   const [axiosBase] = useAxiosInterceptor();
   const { user } = useAuthentication();
   const [allClasses, refetch] = useGetClasses();
+  const [feedbackClassId, setFeedbackClassId] = useState("")
+  const [feedbackError,setFeedbackError] = useState("")
+  const [textEmptier,setTextEmptier] = useState(true);
   console.log(allClasses)
-  const [modalOpen, setModalOpen ] = useState(false)
+  useEffect(()=>{
+    const feedback = document.getElementById('feedback');
+    feedback.value = "";
+    setFeedbackError("");
+  },[textEmptier])
+  const giveFeedback =async(event,classId) => {
+    event.preventDefault();
+    const form = event.target.parentNode.parentNode
+    const feedback = form.feedback.value;
+    const modal = document.getElementById('my_modal_5');
+    if(!feedback){
+      setFeedbackError("Please Provide a feedback")
+      return
+    }
+    // const feedback = document.getElementById('feedback').value;
+    // console.log(feedback,classId)
+    await axiosBase.patch(`/classes/class-feedback/${classId}`,{feedback: feedback})
+    .then((response) => {
+      if (response.data.modifiedCount) {
+        // refetch();
+        modal.close();
+        // form.reset()
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `Your feedback has been stored`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  }
   const approveClass = (name, id) => {
     // console.log(id)
     Swal.fire({
@@ -67,17 +101,14 @@ const ManageClasses = () => {
   }
   return (
     <>
-    <dialog id="my_modal_5" className={`modal modal-bottom sm:modal-middle ${modalOpen ? 'modal-open': '' }`}>
+    <dialog id="my_modal_5" className={`modal modal-bottom sm:modal-middle `}>
   <form method="dialog" className="bg-indigo-300 modal-box">
   <button htmlFor="my-modal-3" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
     <h3 className="font-bold text-center text-lg">Please Enter your feedback here</h3>
-    <p className="py-4">Press ESC key or click the button below to close</p>
+    <textarea placeholder="Your Feedback" id="feedback" name="feedback" className="textarea textarea-bordered textarea-sm w-full mt-10" ></textarea>
+    <p>{feedbackError}</p>
     <div className="modal-action">
-      {/* if there is a button in form, it will close the modal */}
-      <button className="btn" onClick={() => {
-        setModalOpen(true)
-        console.log(modalOpen)
-      }}>Close</button>
+      <button className="btn" onClick={(event) => giveFeedback(event,feedbackClassId)}>Submit</button>
     </div>
   </form>
 </dialog>
@@ -116,7 +147,9 @@ const ManageClasses = () => {
               status={eachClass.status}
               approveClass={approveClass}
               denyClass={denyClass}
-
+              setFeedbackClassId={setFeedbackClassId}
+              setTextEmptier={setTextEmptier}
+              textEmptier={textEmptier}
             ></ManageClassTableRow>
           ))}
         </tbody>
