@@ -1,7 +1,7 @@
 import { FaChalkboardTeacher,FaUserShield } from "react-icons/fa";
 
 
-const AdminTableRow = ({ user,id,imageUrl, name, role, serial,email,makeAdmin,makeInstructor }) => {
+const AdminManageUsersTableRow = ({ user,id,imageUrl, name, role, serial,email,makeAdmin,makeInstructor }) => {
 
     
   return (
@@ -30,4 +30,4 @@ const AdminTableRow = ({ user,id,imageUrl, name, role, serial,email,makeAdmin,ma
   )
 }
 
-export default AdminTableRow
+export default AdminManageUsersTableRow

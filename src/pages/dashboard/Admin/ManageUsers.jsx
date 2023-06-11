@@ -1,8 +1,8 @@
 import useAuthentication from "../../../hooks/useAuthentication";
 import useGetUsers from "../../../hooks/useGetUsers";
-import AdminTableRow from "./AdminTableRow";
 import useAxiosInterceptor from "../../../hooks/useAxiosInterceptor";
 import Swal from "sweetalert2";
+import AdminManageUsersTableRow from "./AdminManageUsersTableRow";
 
 const ManageUsers = () => {
   const [allUsers, refetch] = useGetUsers();
@@ -65,7 +65,7 @@ const ManageUsers = () => {
   };
 
   return (
-    <div className="">
+    <>
       <h1 className="text-center text-4xl py-9 font-bold text-indigo-600">
         Manage Users
       </h1>
@@ -79,12 +79,12 @@ const ManageUsers = () => {
               <th className="bg-indigo-200 text-center">Email</th>
               <th className="bg-indigo-200 text-center">Role</th>
               <th className="bg-indigo-200 text-center">Make Instructor</th>
-              <th className="bg-indigo-200 text-center">Make Admin</th>
+              <th className="bg-indigo-200 text-center rounded-e-lg">Make Admin</th>
             </tr>
           </thead>
           <tbody>
             {allUsers.map((eachUser, index) => (
-              <AdminTableRow
+              <AdminManageUsersTableRow
                 key={eachUser._id}
                 serial={index + 1}
                 name={eachUser.name}
@@ -95,12 +95,12 @@ const ManageUsers = () => {
                 user={user}
                 makeAdmin={makeAdmin}
                 makeInstructor={makeInstructor}
-              ></AdminTableRow>
+              ></AdminManageUsersTableRow>
             ))}
           </tbody>
         </table>
       </div>
-    </div>
+    </>
   );
 };
 
