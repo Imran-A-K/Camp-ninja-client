@@ -1,5 +1,8 @@
+import UseGetAllClasses from "../hooks/UseGetAllClasses"
 
 const Classes = () => {
+    const [allApprovedClasses, refetch] = UseGetAllClasses();
+    console.log(allApprovedClasses)
   return (
     <>
     <h1 className="text-center text-4xl py-9 font-bold text-indigo-600">

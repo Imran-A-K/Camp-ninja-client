@@ -1,12 +1,16 @@
+import useAuthentication from "../hooks/useAuthentication";
 import useGetInstructors from "../hooks/useGetInstructors"
 import InstructorsTableRow from "./InstructorsTableRow";
 
 const Instructors = () => {
   const [allInstructors, refetch] = useGetInstructors();
+  const { nav } = useAuthentication();
   // console.log(allInstructors)
   return (
-    <div className="max-w-[1300px] mx-auto">
-    <h1 className="text-center text-4xl py-9 font-bold text-indigo-600">
+    <div className="max-w-[1300px] max-sm:px-4 mx-auto">
+      {
+        !nav && <>
+              <h1 className="text-center text-4xl py-9 font-bold text-indigo-600">
       Our Instructors
     </h1>
     <div className="overflow-x-auto">
@@ -33,6 +37,9 @@ const Instructors = () => {
         </tbody>
       </table>
     </div>
+        </>
+      }
+    
     </div>
   )
 }
