@@ -85,11 +85,11 @@ const AdminSideBar = () => {
           animate={open ? "open" : "closed"}
           className=" bg-[#f5f5f5] drop-shadow-md text-gray shadow-xl z-[999] max-w-[16rem]  w-[16rem] 
               overflow-hidden md:relative fixed
-           h-screen "
+           h-full min-h-screen "
         >
-          <div className="flex items-center font-medium border-b py-3 border-slate-300 mx-6">
+          <div className="flex items-center justify-center font-medium border-b py-3 border-slate-300 mx-6">
         {/* {!open && <span className="text-xl mt-3 whitespace-pre">Hi,</span>} */}
-        {!open && <img className="w-20 rounded-full" src={user.photoURL} />}
+        {!open && <img className="w-20 rounded-full" src={user?.photoURL} />}
     {open && <span className="text-xl mt-3 whitespace-pre">Hi,{user?.displayName}</span>
   }
   
@@ -98,13 +98,13 @@ const AdminSideBar = () => {
           <div className="flex flex-col  h-full">
             <ul className="whitespace-pre px-2.5 text-[0.9rem] py-5 flex flex-col gap-1  font-medium overflow-x-hidden scrollbar-thin scrollbar-track-white scrollbar-thumb-slate-100   md:h-[68%] h-[70%]">
               <li>
-                <NavLink to={"/"} className="links">
+                <NavLink to={"/admin-dashboard/manage-classes"} className="links">
                   <AiOutlineAppstore size={23} className="min-w-max" />
                   Manage Classes
                 </NavLink>
               </li>
               <li>
-                <NavLink to={"/authentication"} className="links">
+                <NavLink to={"/admin-dashboard/manage-users"} className="links">
                   <HiUserGroup size={23} className="min-w-max" />
                   Manage Users
                 </NavLink>

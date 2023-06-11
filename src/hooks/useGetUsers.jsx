@@ -1,19 +1,22 @@
 import { useQuery } from '@tanstack/react-query'
 import useAuthentication from './useAuthentication'
 import useAxiosInterceptor from './useAxiosInterceptor';
-const useInstructorClasses = () => {
+
+const useGetUsers = () => {
     const { user, queryEnabler } = useAuthentication();
     const [axiosBase] = useAxiosInterceptor();
-    const { refetch, data : instructorClasses = [] } = useQuery({
-        queryKey: ['instructors-classes', user?.email],
+
+    const { refetch, data : allUsers = [] } = useQuery({
+        queryKey: ['all-Users', user?.email],
         enabled: queryEnabler,
         queryFn: async () => {
-            const response = await axiosBase(`/instructor-classes?email=${user?.email}`)
+            const response = await axiosBase(`/users`)
             return response.data;
           }
           
     })
-    return [instructorClasses, refetch]
+    return [allUsers, refetch]
+
 }
 
-export default useInstructorClasses
+export default useGetUsers

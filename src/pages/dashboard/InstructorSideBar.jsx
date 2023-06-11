@@ -86,9 +86,9 @@ const InstructorSideBar = () => {
               overflow-hidden md:relative fixed
            h-full min-h-screen"
         >
-          <div className="flex items-center font-medium border-b py-3 border-slate-300 mx-6">
+          <div className="flex items-center justify-center font-medium border-b py-3 border-slate-300 mx-6">
         {/* {!open && <span className="text-xl mt-3 whitespace-pre">Hi,</span>} */}
-        {!open && <img className="w-20 rounded-full" src={user.photoURL} />}
+        {!open && <img className="w-20 rounded-full" src={user?.photoURL} />}
     {open && <span className="text-xl mt-3 whitespace-pre">Hi,{user?.displayName}</span>
   }
   

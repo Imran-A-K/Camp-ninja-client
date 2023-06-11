@@ -4,7 +4,7 @@ import TableRow from "./TableRow";
 
 const MyClasses = () => {
   const [instructorClasses, refetch] = useInstructorClasses();
-  console.log(instructorClasses);
+//   console.log(instructorClasses);
   return (
     <div className="">
       <h1 className="text-center text-4xl py-9 font-bold text-indigo-600">
@@ -36,6 +36,7 @@ const MyClasses = () => {
                 feedback={eachClass.feedback}
               />
             )}
+            
           </tbody>
         </table>
       </div>

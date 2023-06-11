@@ -1,5 +1,6 @@
 import { FaRegEdit } from "react-icons/fa";
 const TableRow = ({ serial, nameOfClass, price, availableSeats, enrolled, feedback, status }) => {
+  // console.log(status)
   return (
     <tr className="hover">
         <th>{serial}</th>

@@ -8,6 +8,8 @@ import InstructorDashBoard from "../Layout/InstructorDashBoard";
 import AdminDashBoard from "../Layout/AdminDashBoard";
 import AddClass from "../pages/dashboard/Instructor/AddClass";
 import MyClasses from "../pages/dashboard/Instructor/MyClasses";
+import ManageClasses from "../pages/dashboard/Admin/ManageClasses";
+import ManageUsers from "../pages/dashboard/Admin/ManageUsers";
 
 export const router = createBrowserRouter([
     {
@@ -59,8 +61,12 @@ export const router = createBrowserRouter([
         element: <AdminDashBoard />,
         children: [
             {
-                path: 's',
-                element: <div>dd</div>
+                path: 'manage-classes',
+                element: <ManageClasses />
+            },
+            {
+                path: 'manage-users',
+                element: <ManageUsers />
             }
         ]
     }
