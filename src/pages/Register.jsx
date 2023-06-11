@@ -43,7 +43,7 @@ const Register = () => {
             });
 
           await Swal.fire({
-            position: "top-end",
+            position: "top",
             icon: "success",
             title:
               "Your account has been created successfully please login to continue",

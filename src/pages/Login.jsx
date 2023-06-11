@@ -32,7 +32,7 @@ const Login = () => {
       // const user = result.user;
       // console.log(user)
       await Swal.fire({
-        position: 'top-end',
+        position: 'top',
         icon: 'success',
         title: 'Login Successful',
         showConfirmButton: false,

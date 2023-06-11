@@ -27,7 +27,7 @@ const ManageUsers = () => {
             Swal.fire({
               position: "center",
               icon: "success",
-              title: `The ${name} is now an Admin`,
+              title: `${name} is now an Admin`,
               showConfirmButton: false,
               timer: 1500,
             });
@@ -54,7 +54,7 @@ const ManageUsers = () => {
             Swal.fire({
               position: "center",
               icon: "success",
-              title: `The ${name} is now an Instructor`,
+              title: `${name} is now an Instructor`,
               showConfirmButton: false,
               timer: 1500,
             });

@@ -1,6 +1,6 @@
 import { FaCheck, FaRegCommentDots, FaTimes } from "react-icons/fa"
 
-const ManageClassTableRow = ({id,serial,picture,className,instructor,email,availableSeats,price,status }) => {
+const ManageClassTableRow = ({id,serial,picture,className,instructor,email,availableSeats,price,status,approveClass,denyClass }) => {
   return (
     <tr className="hover">
     <th>{serial}</th>
@@ -19,15 +19,15 @@ const ManageClassTableRow = ({id,serial,picture,className,instructor,email,avail
     <td className="text-center ">
         <div className="flex gap-2 items-center justify-center h-full">
         <div className="tooltip" data-tip="approve">
-  <button className="btn bg-blue-400 text-slate-900 hover:bg-slate-900 hover:text-amber-500"><FaCheck /></button>
+  <button onClick={() => approveClass(className,id)} disabled={status === "Approved" ? true : false} className="btn bg-blue-400 text-slate-900 hover:bg-slate-900 hover:text-amber-500"><FaCheck /></button>
 </div>
 <div className="tooltip" data-tip="deny">
-  <button className="btn bg-red-600 text-gray-800 hover:bg-stone-400 hover:text-red-600 text-lg"><FaTimes /></button>
+  <button onClick={() => denyClass(className,id)} disabled={status === "Denied" ? true : false} className="btn bg-red-600 text-gray-800 hover:bg-stone-400 hover:text-red-600 text-lg"><FaTimes /></button>
 </div>
         </div>
 
 </td>
-    <td className="text-center"><button className="btn bg-slate-800 hover:bg-amber-400 hover:text-slate-900 text-yellow-200 text-lg"><FaRegCommentDots /></button></td>
+    <td className="text-center"><button className="btn bg-slate-800 hover:bg-amber-400 hover:text-slate-900 text-yellow-200 text-lg" onClick={()=>window.my_modal_5.showModal()}><FaRegCommentDots /></button></td>
   </tr>
   )
 }
