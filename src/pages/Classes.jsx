@@ -13,14 +13,11 @@ const Classes = () => {
         <thead className="text-xl text-gray-900">
           <tr>
             <th className="bg-indigo-200 rounded-s-lg text-center">No.</th>
-            <th className="bg-indigo-200 text-center">Picture</th>
-            <th className="bg-indigo-200 text-center">Class</th>
+            <th className="bg-indigo-200 text-center">Image</th>
+            <th className="bg-indigo-200 text-center">Name</th>
             <th className="bg-indigo-200 text-center">Instructor</th>
-            <th className="bg-indigo-200 text-center">Email</th>
             <th className="bg-indigo-200 text-center">Available seats</th>
             <th className="bg-indigo-200 text-center">Price</th>
-            <th className="bg-indigo-200 text-center">Status</th>
-            <th className="bg-indigo-200 text-center">Approve/Deny</th>
             <th className="bg-indigo-200 text-center rounded-e-lg">Feedback</th>
           </tr>
         </thead>
