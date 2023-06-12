@@ -1,5 +1,4 @@
 import {
-  HiChip,
   HiOutlineChip,
   HiOutlinePhone,
   HiArrowSmRight,
@@ -10,7 +9,7 @@ import supportImg from "../../assets/agent/Agent.jpg";
 
 const Support = () => {
   return (
-    <div name="support" className="max-w-[1300px] relative mx-auto mt-24">
+    <div name="support" className="max-w-[1300px] relative mx-auto">
       <div className="w-full h-[700px] bg-gray-900/90 absolute">
         <img
           className="w-full h-full object-cover mix-blend-overlay"
