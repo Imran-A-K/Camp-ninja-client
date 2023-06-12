@@ -12,7 +12,7 @@ const ManageClasses = () => {
   const [feedbackClassId, setFeedbackClassId] = useState("")
   const [feedbackError,setFeedbackError] = useState("")
   const [textEmptier,setTextEmptier] = useState(true);
-  console.log(allClasses)
+  // console.log(allClasses)
   useEffect(()=>{
     const feedback = document.getElementById('feedback');
     feedback.value = "";
