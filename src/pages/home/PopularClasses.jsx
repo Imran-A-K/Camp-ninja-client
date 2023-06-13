@@ -3,21 +3,8 @@ import { HiOutlineArrowUpRight } from "react-icons/hi2";
 import useGetPopularClasses from "../../hooks/useGetPopularClasses";
 const PopularClasses = () => {
     const [popularClasses, refetch] = useGetPopularClasses()
-    console.log(popularClasses)
-  const service = [
-    {
-      img: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1949&q=80",
-      title: "Figma UI Ux Design",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1949&q=80",
-      title: "web  Development",
-    },
-    {
-      img: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1949&q=80",
-      title: "Marketing",
-    },
-  ];
+    // console.log(popularClasses)
+
   return (
     <div className="max-w-[1300px] mx-auto py-10">
       <p className="text-lg text-center text-purple-500  font-semibold">
