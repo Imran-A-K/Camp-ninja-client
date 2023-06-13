@@ -21,7 +21,7 @@ const ClassesCard = ({classImage,name,availableSeats,instructorName,id,price,use
               <div className="flex pt-4 text-lg font-semibold justify-between items-center">
                 Price: ${price}
                 {/* <HiOutlineArrowUpRight className="" /> */}
-                <button onClick={() => selectClass(selectedClass)} disabled={userRole && userRole === "admin" || userRole === "instructor" ? true : false} className='group-hover:text-slate-800 group-hover:bg-white text-lg font-semibold btn btn-primary'>Select</button>
+                <button onClick={() => selectClass(selectedClass)} disabled={userRole && userRole === "admin" || userRole === "instructor" || availableSeats === 0 ? true : false} className='group-hover:text-slate-800 group-hover:bg-white text-lg font-semibold btn btn-primary'>Select</button>
               </div>
             </div>
     </>
