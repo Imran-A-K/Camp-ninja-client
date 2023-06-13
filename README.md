@@ -1,5 +1,5 @@
 # Camp Ninja
-* Live site Link : https://xtremewheelz-75513.web.app/
+* Live site Link : https://camp-ninja.web.app/
 
 * This is a Website designed for selling summer camp classes
 * Here User Authentication system is implemented

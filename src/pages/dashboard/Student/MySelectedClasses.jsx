@@ -24,7 +24,7 @@ const MySelectedClasses = () => {
           confirmButtonText: 'Yes, I am sure!'
         }).then((result) => {
           if (result.isConfirmed) {
-            axiosBase.delete(`http://localhost:4000/students-selected-classes?id=${id}`)
+            axiosBase.delete(`https://camp-ninja-server.vercel.app/students-selected-classes?id=${id}`)
             .then(async(response) => {
               if(response.data.deletedCount>0){
               await Swal.fire(

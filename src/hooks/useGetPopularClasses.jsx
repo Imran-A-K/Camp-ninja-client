@@ -5,7 +5,7 @@ const useGetPopularClasses = () => {
     const { refetch, data : popularClasses = [] } = useQuery({
         queryKey: ['popularClasses'],
         queryFn: async () => {
-            const response = await axios.get(`http://localhost:4000/popular-classes`)
+            const response = await axios.get(`https://camp-ninja-server.vercel.app/popular-classes`)
             return response.data;
           }
           

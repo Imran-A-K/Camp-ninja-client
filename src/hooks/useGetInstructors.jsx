@@ -4,7 +4,7 @@ const useGetInstructors = () => {
     const { refetch, data : allInstructors = [] } = useQuery({
         queryKey: ['all-Instructors'],
         queryFn: async () => {
-            const response = await axios.get(`http://localhost:4000/instructors`)
+            const response = await axios.get(`https://camp-ninja-server.vercel.app/instructors`)
             return response.data;
           }
           

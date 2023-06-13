@@ -4,7 +4,7 @@ const UseGetAllClasses = () => {
     const { refetch, data : allApprovedClasses = [] } = useQuery({
         queryKey: ['all-Approved-classes'],
         queryFn: async () => {
-            const response = await axios.get(`http://localhost:4000/approved-classes`)
+            const response = await axios.get(`https://camp-ninja-server.vercel.app/approved-classes`)
             return response.data;
           }
           
