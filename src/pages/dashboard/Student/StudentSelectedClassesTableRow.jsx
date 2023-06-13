@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 const StudentSelectedClassesTableRow = ({serial, className,picture, price, id, deleteBooking, setPaymentItem,selectedClass}) => {
   return (
     <tr className="hover">
-    <th className="">{serial}</th>
+    <th className="text-center">{serial}</th>
     <td className="text-center"><div className="avatar">
   <div className="w-24 rounded-full">
     <img src={picture} />
