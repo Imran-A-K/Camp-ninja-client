@@ -222,7 +222,7 @@ const AddClass = () => {
               </label>
               <div className="form-control w-full">
   
-  <input type="file" className="file-input file-input-primary file-input-bordered block w-full mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 "
+  <input type="file" className="h-auto p-0 file-input file-input-primary file-input-bordered block w-full mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 "
   {...register('classImage', {
     required: 'Image is required',
     validate: {
