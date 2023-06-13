@@ -99,14 +99,14 @@ const Register = () => {
         <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
           <div className="mt-12 flex flex-col items-center">
             <h1 className="text-2xl xl:text-3xl font-bold mb-3">Welcome!</h1>
-            <h1 className="text-2xl xl:text-2xl font-semibold">
+            <h1 className="text-2xl xl:text-2xl text-center font-semibold">
               Please enter your details to sign Up
             </h1>
             <div className="w-full flex-1 mt-8">
               <div className="flex flex-col items-center">
                 <button
                   onClick={signUpWithGoogle}
-                  className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center active:scale-[.98] ease-in-out transform active:duration-100 transition-all hover:scale-[1.01] focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline"
+                  className="w-full max-w-xs font-bold shadow-sm rounded-lg py-7 bg-indigo-100 text-gray-800 flex items-center justify-center active:scale-[.98] ease-in-out transform active:duration-100 transition-all hover:scale-[1.01] focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline"
                 >
                   <div className="bg-white p-2 rounded-full active:scale-[.98] ease-in-out transform active:duration-100 transition-all hover:scale-[1.01]">
                     <svg className="w-4" viewBox="0 0 533.5 544.3">
