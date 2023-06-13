@@ -32,7 +32,7 @@ const Register = () => {
         // const registeredUser = result.user;
         updateUserProfile(data.name, data.photoUrl).then(async () => {
           await axios
-            .post(`https://camp-ninja-server.vercel.app/register-new-user`, {
+            .post(`http://localhost:4000/register-new-user`, {
               name: data.name,
               email: data.email,
               photoUrl: data.photoUrl,
@@ -74,7 +74,7 @@ const Register = () => {
       .then(async (result) => {
         const registeredUser = result.user;
         await axios
-          .post(`https://camp-ninja-server.vercel.app/register-new-user`, {
+          .post(`http://localhost:4000/register-new-user`, {
             name: registeredUser.displayName,
             email: registeredUser.email,
             photoUrl: registeredUser.photoURL,
