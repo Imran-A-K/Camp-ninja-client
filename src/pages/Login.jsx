@@ -75,7 +75,7 @@ const Login = () => {
           <h1 className="text-2xl xl:text-3xl font-bold mb-3">
             Welcome back!
           </h1>
-          <h1 className="text-2xl xl:text-2xl font-semibold">
+          <h1 className="text-2xl xl:text-2xl text-center font-semibold">
             Please enter your details to login
           </h1>
           <div className="w-full flex-1 mt-8">
