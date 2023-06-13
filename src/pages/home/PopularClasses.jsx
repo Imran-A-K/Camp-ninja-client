@@ -20,10 +20,10 @@ const PopularClasses = () => {
   ];
   return (
     <div className="max-w-[1300px] mx-auto py-10">
-      <p className="text-lg text-center text-purple-500  font-medium">
+      <p className="text-lg text-center text-purple-500  font-semibold">
         Explore Courses
       </p>
-      <p className="text-3xl text-center font-semibold  py-3">
+      <p className="text-3xl text-center dark:text-white font-semibold  py-3">
         Our Most Popular Classes
       </p>
 

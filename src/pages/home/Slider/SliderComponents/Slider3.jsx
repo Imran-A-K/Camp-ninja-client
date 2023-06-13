@@ -6,19 +6,19 @@ const Slider3 = () => {
     <div className="max-w-[1300px] mx-auto max-sm:px-8 ">
       <div className="flex flex-col md:flex-row justify-between items-center py-10">
         <div className="flex flex-col gap-4">
-          <p className="text-4xl capitalize font-semibold">
+          <p className="text-4xl capitalize dark:text-white font-semibold">
 
           Ignite your passion for sports 
           </p>
-          <p className='text-4xl capitalize font-semibold'>and reach new heights at our </p>
+          <p className='text-4xl capitalize dark:text-white font-semibold'>and reach new heights at our </p>
             <p className="text-purple-500 text-5xl capitalize font-semibold">Summer sports Camp!</p>{" "}
-          <p className="text-lg text-gray-800 mt-2">
+          <p className="text-lg dark:text-white text-gray-800 mt-2">
             Join us and explore the fun of {" "}
             <br />
             sports together.
           </p>
          
-          <div className="flex gap-6 max-sm:gap-4 max-sm:px-4 items-center pt-6">
+          <div className="flex dark:text-white gap-6 max-sm:gap-4 max-sm:px-4 items-center pt-6">
             <div className="max-sm:hidden flex gap-2 items-center">
                 <img src={publicImg} alt="" />
                 <p>Public Speaking</p>

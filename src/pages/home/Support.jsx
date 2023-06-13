@@ -9,7 +9,7 @@ import supportImg from "../../assets/agent/Agent.jpg";
 
 const Support = () => {
   return (
-    <div name="support" className="max-w-[1300px] relative mx-auto">
+    <div name="support" className="max-w-[1300px] relative mx-auto dark: mb-10">
       <div className="w-full h-[700px] bg-gray-900/90 absolute">
         <img
           className="w-full h-full object-cover mix-blend-overlay"
@@ -40,7 +40,7 @@ const Support = () => {
                 <span className="text-black">Sales</span>
               </h3>
               <p className="text-gray-600 text-xl">
-                We offer quality sales support bu automating your entire sales. Our software handles everything starting from revenue to tax submission
+                We offer quality sales support by automating your entire sales. Our software handles everything about revenues. You just have to get it installed.
               </p>
             </div>
             <div className="bg-slate-100 hover:bg-slate-300 pl-8 py-4">

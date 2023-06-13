@@ -6,28 +6,28 @@ const Slider1 = () => {
     <div className="max-w-[1300px] mx-auto max-sm:px-8 z-10">
       <div className="flex flex-col md:flex-row justify-between items-center py-10">
         <div className="flex flex-col gap-4 ">
-          <p className="text-5xl capitalize font-semibold">
+          <p className="text-5xl capitalize font-semibold dark:text-white">
 
           Unleash Your Inner    
           </p>
-          <p className='text-5xl capitalize font-semibold'>Champion at our </p>
+          <p className='text-5xl capitalize dark:text-white font-semibold'>Champion at our </p>
             <p className="text-purple-500 text-5xl capitalize font-semibold">Summer Sports Camp!</p>{" "}
-          <p className="text-lg text-gray-800 mt-2">
+          <p className="text-lg dark:text-white text-gray-800 mt-2">
             We provide you with the latest camping system {" "}
             <br />
             based on all kinds of sorts of lates equipment.
           </p>
          
           <div className="flex gap-6 max-sm:gap-4 max-sm:px-4 items-center pt-6">
-            <div className="max-sm:hidden flex gap-2 items-center">
+            <div className="max-sm:hidden dark:text-white flex gap-2 items-center">
                 <img src={publicImg} alt="" />
                 <p>Public Speaking</p>
             </div>
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-2 dark:text-white items-center">
                 <img className='w-6' src={healthImg} alt="" />
                 <p>Health Oriented</p>
             </div>
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-2 dark:text-white items-center">
                 <img src={think} alt="" />
                 <p>Creative Thinking</p>
             </div>

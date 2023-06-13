@@ -12,7 +12,7 @@ const Payment = () => {
   return (
     <div>
       <h1 className="text-center text-4xl py-9 font-bold text-indigo-600">
-      Please enter your details to Pay
+      Please enter your card details to Pay
     </h1>
     <Elements stripe={stripePromise}>
           <CardForm></CardForm>

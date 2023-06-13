@@ -17,7 +17,7 @@ const CardForm = () => {
     const [ cardError, setCardError ] = useState('')
     const [axiosBase] = useAxiosInterceptor();
     const [clientSecret, setClientSecret] = useState('')
-    console.log(user)
+    // console.log(user)
     useEffect(()=>{
         // console.log(price)
        if(paymentItem.price > 0){

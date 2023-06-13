@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import moment from 'moment';
 const Footer = () => {
   return (
-    <footer className="bg-white">
+    <footer className="bg-white dark:bg-slate-200">
       <div className="mx-auto max-w-screen-xl px-4 pb-6 pt-16 sm:px-6 lg:pt-20">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>

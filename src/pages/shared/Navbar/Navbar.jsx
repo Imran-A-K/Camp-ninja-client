@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AiOutlineMenu,
-  AiOutlineSearch,
   AiOutlineClose,
-  AiFillTag,
+  
 } from "react-icons/ai";
-import { BsFillCartFill, BsFillSaveFill } from "react-icons/bs";
-import { TbTruckDelivery } from "react-icons/tb";
+
 import {
   FaChalkboard,
   FaChalkboardTeacher,
@@ -18,13 +16,40 @@ import {
  
 } from "react-icons/fa";
 import useAuthentication from "../../../hooks/useAuthentication";
-import logo from "/ninja-Logo.ico";
 import { Link, NavLink } from "react-router-dom";
 import { Button, Tooltip, Avatar } from "@mui/material";
 import { HiHome } from "react-icons/hi";
 import useRoleGetter from "../../../hooks/useRoleGetter";
+import "./DarkMode.css";
+
+import { HiMoon,HiSun } from "react-icons/hi2";
+
 
 const Navbar = () => {
+
+  // darkmode 
+  const [theme, setTheme] = useState(null);
+
+	useEffect(() => {
+		if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			setTheme('dark');
+		} else {
+			setTheme('light');
+		}
+	}, []);
+
+	const themeSwitcher = () => {
+		setTheme(theme === 'dark' ? 'light' : 'dark');
+	};
+
+	useEffect(() => {
+		if (theme === 'dark') {
+			document.documentElement.classList.add('dark');
+		} else {
+			document.documentElement.classList.remove('dark');
+		}
+	}, [theme]);
+
   const { user, logOut, nav, setNav } = useAuthentication();
   const [userRole] = useRoleGetter()
   let isAdmin,isInstructor,isStudent =null;
@@ -51,7 +76,7 @@ const Navbar = () => {
   };
   return (
     //bg-[#f1f4f7]
-    <div className=" bg-[#f5f5f5] max-w-[1300px] mx-auto drop-shadow-md py-4 flex justify-between items-center px-4">
+    <div className=" bg-[#f5f5f5] dark:bg-slate-300 max-w-[1300px] mx-auto drop-shadow-md py-4 flex justify-between items-center px-4">
       <div className="flex gap-2 items-center">
         <div
           onClick={() => setNav(!nav)}
@@ -59,10 +84,24 @@ const Navbar = () => {
         >
           <AiOutlineMenu size={30} />
         </div>
-        <FaUserNinja className="text-2xl text-violet-600"></FaUserNinja>
-        <h1 className="text-2xl sm:text-3xl lg:text-3xl px-2">
+        <FaUserNinja className="text-2xl max-sm:text-xl text-violet-600"></FaUserNinja>
+        <h1 className="text-2xl max-sm:flex max-sm:text-xl sm:text-3xl lg:text-3xl md:px-2">
           Camp <span className="font-bold text-violet-600">Ninja</span>
         </h1>
+        {!nav && <div className='dark_mode'>
+            <input
+                className='dark_mode_input'
+                type='checkbox'
+                id='darkmode-toggle'
+                onChange={themeSwitcher}
+                checked={theme === 'dark' ? true : false}
+            />
+            <label className='dark_mode_label' htmlFor='darkmode-toggle'>
+                <HiSun className="sun" />
+                <HiMoon className="moon" />
+            </label>
+        </div>}
+      
       </div>
 
       {nav ? (
@@ -151,7 +190,7 @@ const Navbar = () => {
       <div className="md:flex pr-4">
         {user ? (
           <div className="flex justify-center items-center gap-4">
-            {isInstructor && <div className="badge badge-primary">Instructor</div>}
+            {isInstructor && <div className="badge max-sm:hidden badge-primary">Instructor</div>}
             <Tooltip
               disableFocusListener
               disableTouchListener
@@ -189,7 +228,7 @@ const Navbar = () => {
             </Tooltip>
             
 
-            <button onClick={signOutHandler} className="btn bg-black -mt-1 text-slate-200  hover:bg-gray-800">
+            <button onClick={signOutHandler} className="btn bg-black -mt-1 max-sm:hidden text-slate-200  hover:bg-gray-800">
             Log Out
               {/* <div className="flex gap-4 pb-3 items-center justify-center">
                  <FaUserAltSlash />
@@ -198,7 +237,7 @@ const Navbar = () => {
           </div>
         ) : (
           <Link to="/login">
-              <button className="btn bg-black text-slate-200 -mt-1 hover:bg-gray-800">
+              <button className="btn bg-black max-sm:hidden text-slate-200 -mt-1 hover:bg-gray-800">
               Login
                 {/* <div className="flex gap-4 pb-3 items-center justify-center">
                    <FaUserPlus />
@@ -215,7 +254,7 @@ const Navbar = () => {
       <div
         className={
           nav
-            ? "fixed top-0 left-0 w-[300px] h-screen bg-white z-40 duration-500"
+            ? "fixed top-0 left-0 w-[300px] h-screen bg-white z-40 duration-500 dark:bg-slate-300"
             : "fixed top-0 left-[-100%] w-[300px] h-screen bg-white z-10 duration-300"
         }
       >

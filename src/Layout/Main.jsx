@@ -4,7 +4,7 @@ import Navbar from "../pages/shared/Navbar/Navbar"
 
 const Main = () => {
   return (
-    <div>
+    <div className="dark:bg-gray-900">
         <Navbar></Navbar>
         <Outlet></Outlet>
         <Footer></Footer>

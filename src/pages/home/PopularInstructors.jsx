@@ -55,7 +55,7 @@ const PopularInstructors = () => {
         <div className="max-w-[1300px] mx-auto py-10 mt-4">
           <p className="text-4xl text-purple-500 text-center font-medium">Popular Instructors</p>
           {/* <p className="text-3xl font-semibold text-center py-3">Meet the Heroes</p> */}
-          <p className="text-gray-500 text-base py-3 text-center w-[450px] max-sm:w-auto mx-auto">
+          <p className="text-gray-500 dark:text-white text-base py-3 text-center w-[450px] max-sm:w-auto mx-auto">
           On Camp <span className="text-purple-600">Ninja</span>,qualified instructors from all over the world coach students.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-12 py-10">
