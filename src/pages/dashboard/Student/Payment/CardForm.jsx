@@ -84,7 +84,7 @@ const CardForm = () => {
                            }
         axiosBase.post('/payments', payment)
         .then(response => {
-          if(response.data.insertResult.insertedId && response.data.insertEnroll.insertedId ){
+          if(response.data.insertResult.insertedId){
             form.reset();
             Swal.fire({
               position: 'top',
