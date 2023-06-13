@@ -188,7 +188,7 @@ const ErrorPage = () => {
 				<p className="text-sm md:text-base text-gray-800 p-2 mb-4">Sorry, The page you are looking doesnot exist.
 				</p>
 				<Link to="/"
-					className="bg-transparent hover:bg-indigo-500 text-slate-200 hover:text-white rounded shadow hover:shadow-lg py-2 px-4 border bg-blue-500 hover:border-transparent">
+					className=" hover:bg-indigo-500 text-slate-200 hover:text-white rounded shadow hover:shadow-lg py-2 px-4 border bg-blue-500 hover:border-transparent">
 					Back to home</Link>
 			</div>
 		</div>
