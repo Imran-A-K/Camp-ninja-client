@@ -124,7 +124,7 @@ const CardForm = () => {
                 <input type="text" required placeholder="card-holder-address" className="bg-white" />
             </div>
           <div className="text-center">
-          <button className="btn mt-4 btn-info btn-sm" type="submit"
+          <button className="btn mt-4 px-10 btn-info btn-sm mr-32" type="submit"
            disabled={!stripe ||!clientSecret ||processing}>
             Pay
           </button>

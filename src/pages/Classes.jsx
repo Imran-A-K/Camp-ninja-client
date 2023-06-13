@@ -16,7 +16,7 @@ const Classes = () => {
     // console.log(userRole)
   const selectClass = async(selectedClass) => {
     if(!user){
-      Swal.fire("Please login or register to book this class")
+      Swal.fire("Please login or register to select this class")
       return
     }
 
