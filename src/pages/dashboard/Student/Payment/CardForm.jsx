@@ -84,6 +84,7 @@ const CardForm = () => {
                            }
         axiosBase.post('/payments', payment)
         .then(response => {
+          // console.log(response.data)
           if(response.data.insertResult.insertedId){
             form.reset();
             Swal.fire({
