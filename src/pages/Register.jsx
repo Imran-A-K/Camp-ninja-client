@@ -231,7 +231,7 @@ const Register = () => {
                     })}
                   />
 
-                  <div className="cursor-pointer text-2xl absolute right-3 top-9 z-10">
+                  <div className="cursor-pointer text-2xl absolute right-3 top-4 z-10">
                     {showPassword === false ? (
                       <AiFillEye
                         onClick={() => setShowPassword(!showPassword)}
@@ -268,7 +268,7 @@ const Register = () => {
                         value === password || "Passwords do not match.",
                     })}
                   />
-                  <div className="cursor-pointer text-2xl absolute right-3 top-9 z-10">
+                  <div className="cursor-pointer text-2xl absolute right-3 top-4 z-10">
                     {showPassConfirm === false ? (
                       <AiFillEye
                         onClick={() => setShowPassConfirm(!showPassConfirm)}

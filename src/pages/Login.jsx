@@ -154,7 +154,7 @@ const Login = () => {
                 })}
                 aria-invalid={errors.password ? "true" : "false"}
               />
-              <div className='cursor-pointer text-2xl absolute right-3 top-9 z-10'>
+              <div className='cursor-pointer text-2xl absolute right-3 top-4 z-10'>
                       {
                           (showPassword === false)? <AiFillEye onClick={() => setShowPassword(!showPassword)}/>:
                           <AiFillEyeInvisible onClick={() =>setShowPassword(!showPassword)}/>
