@@ -12,6 +12,7 @@ const AuthenticationProviders = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [queryEnabler, setQueryEnabler] = useState(false);
   const [nav, setNav] = useState(false);
+  const [paymentItem, setPaymentItem] = useState({});
 
   const registerUser = (email, password) => {
     setLoading(true)
@@ -68,7 +69,9 @@ const AuthenticationProviders = ({ children }) => {
     googleSignIn,
     queryEnabler,
     nav,
-    setNav
+    setNav,
+    paymentItem,
+    setPaymentItem
   };
   return (
     <AuthContext.Provider value={authFunctions}>{children}</AuthContext.Provider>

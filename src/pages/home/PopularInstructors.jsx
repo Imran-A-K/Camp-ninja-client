@@ -65,7 +65,7 @@ const PopularInstructors = () => {
                   className="px-6 py-4 flex justify-center items-center flex-col rounded-xl bg-gray-50 shadow-lg border border-gray-200 hover:bg-purple-600 group "
                   key={i}
                 >
-                  <img className="w-40 h-40 rounded-2xl" src={instructor.img} alt="services" />
+                  <img className="w-52 h-40 rounded-2xl" src={instructor.img} alt="services" />
                   <p className="text-xl group-hover:text-white font-semibold line-clamp-1">
                       {instructor.title}
                     </p>

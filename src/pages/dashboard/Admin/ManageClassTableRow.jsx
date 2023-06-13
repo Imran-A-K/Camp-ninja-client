@@ -3,7 +3,7 @@ import { FaCheck, FaRegCommentDots, FaTimes } from "react-icons/fa"
 const ManageClassTableRow = ({id,textEmptier,serial,picture,className,instructor,email,availableSeats,price,status,approveClass,denyClass,setFeedbackClassId,setTextEmptier }) => {
   return (
     <tr className="hover">
-    <th>{serial}</th>
+    <th className="">{serial}</th>
     <td className="text-center"><div className="avatar">
   <div className="w-24 rounded-full">
     <img src={picture} />

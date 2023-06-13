@@ -12,12 +12,22 @@ import ManageClasses from "../pages/dashboard/Admin/ManageClasses";
 import ManageUsers from "../pages/dashboard/Admin/ManageUsers";
 import Classes from "../pages/Classes";
 import Instructors from "../pages/Instructors";
+import MySelectedClasses from "../pages/dashboard/Student/MySelectedClasses";
+import MyEnrolledClasses from "../pages/dashboard/Student/MyEnrolledClasses";
+import Payment from "../pages/dashboard/Student/Payment/Payment";
+import ErrorPage from "../pages/ErrorPage";
+import PrivateRoute from "./PrivateRoute";
+import StudentRoute from "./StudentRoute";
+import InstructorRoute from "./InstructorRoute";
+import AdminRoute from "./AdminRoute";
+import PaymentHistory from "../pages/dashboard/Student/Payment/PaymentHistory";
 
 export const router = createBrowserRouter([
     {
         
         path: '/',
         element: <Main></Main>,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: '/',
@@ -44,17 +54,38 @@ export const router = createBrowserRouter([
     },
     {
         path: '/student-dashboard',
-        element: <StudentDashBoard />,
+        element: <PrivateRoute>
+            <StudentRoute>
+                <StudentDashBoard />
+                </StudentRoute></PrivateRoute>,
+        errorElement: <ErrorPage />,
         children: [
             {
-                path: 's',
-                element: <div>dd</div>
+                path: 'my-selected-classes',
+                element: <MySelectedClasses />
+            },
+            {
+                path: 'my-enrolled-classes',
+                element: <MyEnrolledClasses />
+            },
+            {
+                path: 'payment',
+                element: <Payment />
+            },
+            {
+                path: 'payment-history',
+                element: <PaymentHistory />
             }
         ]
     },
     {
         path: '/instructor-dashboard',
-        element: <InstructorDashBoard />,
+        element: <PrivateRoute>
+            <InstructorRoute>
+            <InstructorDashBoard />
+            </InstructorRoute>
+        </PrivateRoute>,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: 'add-class',
@@ -68,7 +99,12 @@ export const router = createBrowserRouter([
     },
     {
         path: '/admin-dashboard',
-        element: <AdminDashBoard />,
+        element: <PrivateRoute>
+            <AdminRoute>
+            <AdminDashBoard />
+            </AdminRoute>
+        </PrivateRoute>,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: 'manage-classes',

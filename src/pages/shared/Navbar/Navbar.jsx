@@ -12,21 +12,36 @@ import {
   FaChalkboardTeacher,
   FaListAlt,
   FaUserAltSlash,
-  FaUserCircle,
-  FaUserFriends,
+  
   FaUserNinja,
   FaUserPlus,
-  FaWallet,
+ 
 } from "react-icons/fa";
-import { MdFavorite, MdHelp } from "react-icons/md";
 import useAuthentication from "../../../hooks/useAuthentication";
 import logo from "/ninja-Logo.ico";
 import { Link, NavLink } from "react-router-dom";
 import { Button, Tooltip, Avatar } from "@mui/material";
 import { HiHome } from "react-icons/hi";
+import useRoleGetter from "../../../hooks/useRoleGetter";
 
 const Navbar = () => {
   const { user, logOut, nav, setNav } = useAuthentication();
+  const [userRole] = useRoleGetter()
+  let isAdmin,isInstructor,isStudent =null;
+  if(userRole)
+  {
+    if(user && userRole === "admin"){
+      isAdmin = true
+    }
+    else if(user && userRole === "instructor"){
+      isInstructor = true
+    }
+    else if(user && userRole == "student"){
+      isStudent = true
+    }
+  }
+  // console.log(isStudent)
+  // console.log(userRole)
   const signOutHandler = () => {
     logOut()
       .then()
@@ -36,7 +51,7 @@ const Navbar = () => {
   };
   return (
     //bg-[#f1f4f7]
-    <div className=" bg-[#f5f5f5] max-w-[1300px] mx-auto drop-shadow-md py-2 flex justify-between items-center px-4">
+    <div className=" bg-[#f5f5f5] max-w-[1300px] mx-auto drop-shadow-md py-4 flex justify-between items-center px-4">
       <div className="flex gap-2 items-center">
         <div
           onClick={() => setNav(!nav)}
@@ -93,13 +108,38 @@ const Navbar = () => {
               Classes
             </NavLink>
           </li>
-          {user && (
+          {user && isAdmin &&(
             <li>
               <NavLink
                 className={({ isActive }) =>
                   isActive ? "actiVatedTab" : "defaultTab"
                 }
-                // to="addAToy"
+                to="/admin-dashboard/manage-users"
+              >
+                Dashboard
+              </NavLink>
+            </li>
+          )}
+          {user && isInstructor &&(
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "actiVatedTab" : "defaultTab"
+                }
+                to="/instructor-dashboard/my-classes"
+                
+              >
+                Dashboard
+              </NavLink>
+            </li>
+          )}
+          {user && isStudent &&(
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "actiVatedTab" : "defaultTab"
+                }
+                to="/student-dashboard/my-selected-classes"
               >
                 Dashboard
               </NavLink>
@@ -111,41 +151,67 @@ const Navbar = () => {
       <div className="md:flex pr-4">
         {user ? (
           <div className="flex justify-center items-center gap-4">
+            {isInstructor && <div className="badge badge-primary">Instructor</div>}
             <Tooltip
               disableFocusListener
               disableTouchListener
               arrow
               title={user?.displayName}
+              sx={{
+                // background: 'none', // Remove the background color
+                // border: 'none', // Remove the border
+                // boxShadow: 'none', // Remove the box shadow
+                // padding: 0, // Remove any padding
+              }}
             >
-              <Button>
+              <Button
+              sx={{
+                '&:hover': {
+                  background: 'transparent', 
+                  border: 'none', 
+                  boxShadow: 'none', 
+                  padding: 0, 
+                },
+                background: 'transparent', 
+                border: 'none', 
+                boxShadow: 'none', 
+                padding: 0, 
+              }}
+              >
                 <Avatar
                   alt={user?.displayName}
                   src={user?.photoURL}
-                  sx={{ width: 45, height: 45 }}
+                  sx={{ width: 45, height: 45,background: 'none', 
+                
+                 }}
                 />
               </Button>
             </Tooltip>
+            
 
-            <button onClick={signOutHandler} className="navbar-btn">
-              <div className="flex gap-4 items-center justify-center">
-                Log Out <FaUserAltSlash />
-              </div>
+            <button onClick={signOutHandler} className="btn bg-black -mt-1 text-slate-200  hover:bg-gray-800">
+            Log Out
+              {/* <div className="flex gap-4 pb-3 items-center justify-center">
+                 <FaUserAltSlash />
+              </div> */}
             </button>
           </div>
         ) : (
-          <div className="flex">
-            <Link to="/login">
-              <button className="navbar-logOut-btn">
-                <div className="flex gap-4 items-center justify-center">
-                  Login <FaUserPlus />
-                </div>
+          <Link to="/login">
+              <button className="btn bg-black text-slate-200 -mt-1 hover:bg-gray-800">
+              Login
+                {/* <div className="flex gap-4 pb-3 items-center justify-center">
+                   <FaUserPlus />
+                </div> */}
               </button>
             </Link>
-          </div>
+          // <div className="flex mt-4">
+            
+          // </div>
         )}
       </div>
 
-      {/* Side drawer menu */}
+      {/* Side drawer */}
       <div
         className={
           nav
@@ -199,17 +265,52 @@ const Navbar = () => {
                 <FaChalkboard size={25} className="mr-4" /> Classes
               </li>
             </NavLink>
-            <NavLink
+           {
+            user && isAdmin && (
+              <NavLink
               className={({ isActive }) =>
                 isActive ? "actiVatedTab" : "defaultTab"
               }
-              // to="/classes"
+              to="/admin-dashboard/manage-users"
               onClick={() => setNav(!nav)}
             >
               <li className="text-xl py-4 flex">
                 <FaListAlt size={25} className="mr-4" /> Dashboard
               </li>
             </NavLink>
+            )
+           } 
+           {
+            user && isInstructor && (
+              <NavLink
+              className={({ isActive }) =>
+                isActive ? "actiVatedTab" : "defaultTab"
+              }
+              to="/instructor-dashboard/my-classes"
+              onClick={() => setNav(!nav)}
+            >
+              <li className="text-xl py-4 flex">
+                <FaListAlt size={25} className="mr-4" /> Dashboard
+              </li>
+            </NavLink>
+            )
+           } 
+           {
+            user && isStudent && (
+              <NavLink
+              className={({ isActive }) =>
+                isActive ? "actiVatedTab" : "defaultTab"
+              }
+              to="/student-dashboard/my-selected-classes"
+              onClick={() => setNav(!nav)}
+            >
+              <li className="text-xl py-4 flex">
+                <FaListAlt size={25} className="mr-4" /> Dashboard
+              </li>
+            </NavLink>
+            )
+           } 
+            
 
             {!user ? (
               <NavLink
